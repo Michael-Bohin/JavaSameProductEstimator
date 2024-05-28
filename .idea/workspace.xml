@@ -4,33 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Initial commit of project">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/ProductParserLogger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Adapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/FileHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/JsonReferenceNullException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikJsonProduct.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/RohlikAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/RohlikJsonProduct.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/TescoAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/TescoJsonProduct.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/CountryOfOrigin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/Eshop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/InferredData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NormalizedProduct.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NutritionalValues.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/UnitType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/scrapedEshopData/kosikProductData.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/scrapedEshopData/rohlikProductData.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/scrapedEshopData/tescoProductData.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/CandidateComparer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductFinder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EshopSubstrings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LCSFinder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LengthAdjustedDistance.java" afterDir="false" />
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Recreate folder and file hiearchy from initial project. Loaded webscraped json data to be used as input for the algorithm.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LCSFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LCSFinder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +23,20 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Michael-Bohin"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="fb9e477b-b5df-48f1-b774-a2386c348c7f" />
+        <option name="url" value="https://github.com/Michael-Bohin/JavaSameProductEstimator.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 8
@@ -104,7 +94,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1716861787100</updated>
-      <workItem from="1716861788242" duration="1971000" />
+      <workItem from="1716861788242" duration="2862000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -114,7 +104,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716862637936</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Recreate folder and file hiearchy from initial project. Loaded webscraped json data to be used as input for the algorithm.">
+      <option name="closed" value="true" />
+      <created>1716863813072</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716863813072</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,6 +120,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit of project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit of project" />
+    <MESSAGE value="Recreate folder and file hiearchy from initial project. Loaded webscraped json data to be used as input for the algorithm." />
+    <option name="LAST_COMMIT_MESSAGE" value="Recreate folder and file hiearchy from initial project. Loaded webscraped json data to be used as input for the algorithm." />
   </component>
 </project>
