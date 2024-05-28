@@ -15,6 +15,10 @@ import java.util.Map;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import java.util.function.BiFunction;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+
 
 
 public class EqualProductsFinder {
@@ -194,7 +198,7 @@ public class EqualProductsFinder {
     /// <returns></returns>
     private static void sortCandidatesBySubstring(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
         List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculateSubstringSimilarity);
-        logSortedCandidates("substringSimilarity", sortedCandidates, product, largerEshop);
+        logSortedCandidates("substringSimilarity", product, largerEshop, sortedCandidates);
     }
 
     private static List<SimilarityCandidatePair> sortCandidates(NormalizedProduct product, HashSet<NormalizedProduct> candidates, BiFunction<NormalizedProduct, NormalizedProduct, Double> calculateSimilarity) {
@@ -256,7 +260,7 @@ public class EqualProductsFinder {
     /// <returns></returns>
     public static void sortCandidatesByPrefix(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
         List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculatePrefixSimilarity);
-        logSortedCandidates("prefixSimilarity", sortedCandidates, product, largerEshop);
+        logSortedCandidates("prefixSimilarity", product, largerEshop, sortedCandidates);
     }
 
     public static double calculatePrefixSimilarity(NormalizedProduct product, NormalizedProduct candidate) {
@@ -311,7 +315,7 @@ public class EqualProductsFinder {
     /// <returns></returns>
     private static void sortCandidatesByLongestCommonSubsequence(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
         List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculateLCS);
-        logSortedCandidates("LongestCommonSubsequenceSimilarity", sortedCandidates, product, largerEshop);
+        logSortedCandidates("LongestCommonSubsequenceSimilarity", product, largerEshop, sortedCandidates);
     }
 
     private static double calculateLCS(NormalizedProduct product, NormalizedProduct candidate) {
@@ -344,7 +348,7 @@ public class EqualProductsFinder {
     /// <returns></returns>
     private static void sortCandidatesByEditDistance(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
         List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculateLengthAdjustedEditDistance);
-        logSortedCandidates("LengthAdjustedEditationDistance", sortedCandidates, product, largerEshop);
+        logSortedCandidates("LengthAdjustedEditationDistance", product, largerEshop, sortedCandidates);
     }
     private static double calculateLengthAdjustedEditDistance(NormalizedProduct product, NormalizedProduct candidate) {
         String parsedProductName = removeWS(product.name).toLowerCase();
@@ -387,7 +391,7 @@ public class EqualProductsFinder {
 
             sw.println(sb.toString());
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "An error occurred", e);
+            LOGGER.log(Level.SEVERE, "An error occurred in logStatsOfCandidates", e);
         }
     }
 
@@ -395,9 +399,40 @@ public class EqualProductsFinder {
         return String.format("%,d", number);
     }
 
-    private static void logSortedCandidates(String type, List<SimilarityCandidatePair> sortedCandidates, NormalizedProduct product, EshopSubstrings largerEshop) {
-        // Implement logging logic here
+    public static void logSortedCandidates(String similarityType, NormalizedProduct product, EshopSubstrings largerEshop, List<SimilarityCandidatePair> sortedCandidates) {
+        NormalizedProduct largerName = largerEshop.products.getFirst();
+        String directoryPath = loggingDirectory + product.eshop + "_to_" + largerName.eshop + "/" + similarityType + "/";
+        File directory = new File(directoryPath);
+        assert directory.mkdirs();
+
+        String uniqueFilePath = ensureUniqueFilePath(directoryPath, product.inferredData.getUniqueFileName());
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Equal candidates of ").append(product.name).append(", to be found at url: ").append(product.url).append("\n");
+
+        for (SimilarityCandidatePair candidate : sortedCandidates) {
+            sb.append(String.format("%.4f\t%s\t%s\n", candidate.similarity(), candidate.candidate(), candidate.candidate().url));
+        }
+
+        try (FileWriter fw = new FileWriter(new File(uniqueFilePath))) {
+            fw.write(sb.toString());
+        } catch (IOException e) {
+            LOGGER.log(Level.SEVERE, "An error occurred in logSortedCandidates", e);
+        }
     }
 
+    public static String ensureUniqueFilePath(String directory, String filename) {
+        File file = new File(directory, filename + ".txt");
+        while (file.exists()) {
+            int randomNumber = new Random().nextInt();
+            file = new File(directory, filenameWithoutExtension(filename) + "_" + randomNumber + ".txt");
+        }
+        return file.getPath();
+    }
+
+    private static String filenameWithoutExtension(String filename) {
+        int dotIndex = filename.lastIndexOf('.');
+        return (dotIndex == -1) ? filename : filename.substring(0, dotIndex);
+    }
 }
 
