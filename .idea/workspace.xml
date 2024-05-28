@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Refaktorizace metody void sortProbableEqualProductsAsync()">
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Fix ekvivalent Directory.Create() metody v Jave">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/ProductHashSetCandidatesPair.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/ProductListCandidatesPair.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/SimilarityCandidatePair.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" afterDir="false" />
     </list>
@@ -95,7 +98,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1716861787100</updated>
-      <workItem from="1716861788242" duration="5378000" />
+      <workItem from="1716861788242" duration="9296000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -161,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716867214148</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fix ekvivalent Directory.Create() metody v Jave">
+      <option name="closed" value="true" />
+      <created>1716867398453</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716867398453</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +187,7 @@
     <MESSAGE value="Rewriten the entire class tree around NormalizedProduct class to Java." />
     <MESSAGE value="Implementace kostry EshopProductFinder" />
     <MESSAGE value="Refaktorizace metody void sortProbableEqualProductsAsync()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refaktorizace metody void sortProbableEqualProductsAsync()" />
+    <MESSAGE value="Fix ekvivalent Directory.Create() metody v Jave" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix ekvivalent Directory.Create() metody v Jave" />
   </component>
 </project>
