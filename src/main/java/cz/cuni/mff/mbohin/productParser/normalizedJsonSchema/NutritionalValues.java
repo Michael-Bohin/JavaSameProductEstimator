@@ -1,12 +1,14 @@
 package cz.cuni.mff.mbohin.productParser.normalizedJsonSchema;
 
+import java.math.BigDecimal;
+
 public class NutritionalValues {
     private final int energetickaHodnotaKJ, energetickaHodnotaKCAL;
-    private final double tuky, zTohoNasyceneMastneKyseliny, sacharidy, zTohoCukry, bilkoviny, sul, vlaknina;
+    private final BigDecimal tuky, zTohoNasyceneMastneKyseliny, sacharidy, zTohoCukry, bilkoviny, sul, vlaknina;
 
-    public NutritionalValues(int energetickaHodnotaKJ, int energetickaHodnotaKCAL, double tuky,
-                             double zTohoNasyceneMastneKyseliny, double sacharidy, double zTohoCukry,
-                             double bilkoviny, double sul, double vlaknina) {
+    public NutritionalValues(int energetickaHodnotaKJ, int energetickaHodnotaKCAL, BigDecimal tuky,
+                             BigDecimal zTohoNasyceneMastneKyseliny, BigDecimal sacharidy, BigDecimal zTohoCukry,
+                             BigDecimal bilkoviny, BigDecimal sul, BigDecimal vlaknina) {
         this.energetickaHodnotaKJ = energetickaHodnotaKJ;
         this.energetickaHodnotaKCAL = energetickaHodnotaKCAL;
         this.tuky = tuky;
@@ -28,8 +30,8 @@ public class NutritionalValues {
         assertIsNonNegative(this.vlaknina);
     }
 
-    private void assertIsNonNegative(double d) {
-        if (d < 0)
+    private void assertIsNonNegative(BigDecimal d) {
+        if (d.compareTo(BigDecimal.ZERO) >= 0)
             throw new IllegalArgumentException("Value cannot be negative: " + d);
     }
 
