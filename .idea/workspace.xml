@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="implemented FileHandler class">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Pair.java" afterDir="false" />
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="implemented abstract generic class Adapter">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/TescoCatchweightlist.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/TescoPromotion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/ProductParserLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/ProductParserLogger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Adapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikJsonProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/jsonSchema/KosikJsonProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/RohlikJsonProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/RohlikJsonProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/TescoJsonProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/TescoJsonProduct.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1716861787100</updated>
       <workItem from="1716861788242" duration="10599000" />
-      <workItem from="1716894699366" duration="7473000" />
+      <workItem from="1716894699366" duration="9465000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -237,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716907980856</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="implemented abstract generic class Adapter">
+      <option name="closed" value="true" />
+      <created>1716910280714</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1716910280714</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -272,6 +284,7 @@
     <MESSAGE value="implementace metod logSortedCandidates, ensureUniqueFilePath, filenameWithoutExtension" />
     <MESSAGE value="limit processed products to increase speed of dev time runs" />
     <MESSAGE value="implemented FileHandler class" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented FileHandler class" />
+    <MESSAGE value="implemented abstract generic class Adapter" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented abstract generic class Adapter" />
   </component>
 </project>

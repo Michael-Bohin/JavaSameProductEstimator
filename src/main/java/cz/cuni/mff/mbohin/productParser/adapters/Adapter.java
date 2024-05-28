@@ -43,25 +43,9 @@ public abstract class Adapter<T> {
 
     private List<T> deserializeProducts(String json) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        TypeReference<List<T>> typeRef = new TypeReference<List<T>>() {};
+        TypeReference<List<T>> typeRef = new TypeReference<>() {};
         return mapper.readValue(json, typeRef);
     }
-
-    /*private Pair<List<NormalizedProduct>, List<T>> processProducts(List<T> products) {
-        List<NormalizedProduct> normalizedProducts = new ArrayList<>();
-        List<T> invalidProducts = new ArrayList<>();
-
-        for (T product : products) {
-            NormalizedProduct normalizedProduct;
-            if (tryGetNormalized(product, out normalizedProduct)) {
-                normalizedProducts.add(normalizedProduct);
-            } else {
-                invalidProducts.add(product);
-            }
-        }
-
-        return new Pair<>(normalizedProducts, invalidProducts);
-    }*/
 
     private Pair<List<NormalizedProduct>, List<T>> processProducts(List<T> products) {
         List<NormalizedProduct> normalizedProducts = new ArrayList<>();
