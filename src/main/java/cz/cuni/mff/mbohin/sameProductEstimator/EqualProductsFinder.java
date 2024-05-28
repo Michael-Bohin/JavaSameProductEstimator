@@ -54,7 +54,6 @@ public class EqualProductsFinder {
         }
     }
 
-
     /// <summary>
     /// 1. Foreach eshop creates dictionaries substrings in names to list of references of products
     /// 2. Foreach eshop pair
@@ -89,22 +88,6 @@ public class EqualProductsFinder {
     /// </summary>
     /// <param name="eshopA"></param>
     /// <param name="eshopB"></param>
-  /* private static void generateMostProbableEqualProducts(EshopSubstrings eshopA, EshopSubstrings eshopB) {
-        EshopSubstrings smallerEshop = eshopA.products.size() < eshopB.products.size() ? eshopA : eshopB;
-        EshopSubstrings largerEshop = eshopA.products.size() >= eshopB.products.size() ? eshopA : eshopB;
-
-        createLoggingDirectory(smallerEshop, largerEshop);
-
-        List<ProductHashSetCandidatesPair> equalCandidatesOfProducts = findEqualCandidatesOfProducts(smallerEshop, largerEshop);
-
-        int min =
-        for (ProductHashSetCandidatesPair pair : equalCandidatesOfProducts) {
-            sortCandidatesBySubstring(pair.product(), pair.candidates(), largerEshop);
-            sortCandidatesByPrefix(pair.product(), pair.candidates(), largerEshop);
-            sortCandidatesByLongestCommonSubsequence(pair.product(), pair.candidates(), largerEshop);
-            sortCandidatesByEditDistance(pair.product(), pair.candidates(), largerEshop);
-        }
-    }*/
     private static void generateMostProbableEqualProducts(EshopSubstrings eshopA, EshopSubstrings eshopB) {
         EshopSubstrings smallerEshop = eshopA.products.size() < eshopB.products.size() ? eshopA : eshopB;
         EshopSubstrings largerEshop = eshopA.products.size() >= eshopB.products.size() ? eshopA : eshopB;
@@ -118,13 +101,12 @@ public class EqualProductsFinder {
             NormalizedProduct product = productAndCandidates.product();
             HashSet<NormalizedProduct> candidates = productAndCandidates.candidates();
 
-            sortCandidatesBySubstring(product, candidates, largerEshop);
-            sortCandidatesByPrefix(product, candidates, largerEshop);
-            sortCandidatesByLongestCommonSubsequence(product, candidates, largerEshop);
-            sortCandidatesByEditDistance(product, candidates, largerEshop);
+            /**/sortCandidatesBySubstring(product, candidates, largerEshop);/**/
+            /**/sortCandidatesByPrefix(product, candidates, largerEshop);/**/
+            /**/sortCandidatesByLongestCommonSubsequence(product, candidates, largerEshop);/**/
+            /**/sortCandidatesByEditDistance(product, candidates, largerEshop);/**/
         }
     }
-
 
     private static void createLoggingDirectory(EshopSubstrings smallerEshop, EshopSubstrings largerEshop) {
         if (smallerEshop.products.isEmpty() || largerEshop.products.isEmpty())
@@ -428,14 +410,14 @@ public class EqualProductsFinder {
         File directory = new File(directoryPath);
         assert directory.mkdirs();
 
-        String uniqueFilePath = ensureUniqueFilePath(directoryPath, product.inferredData.getUniqueFileName());
-
         StringBuilder sb = new StringBuilder();
         sb.append("Equal candidates of ").append(product.name).append(", to be found at url: ").append(product.url).append("\n");
 
         for (SimilarityCandidatePair candidate : sortedCandidates) {
             sb.append(String.format("%.4f\t%s\t%s\n", candidate.similarity(), candidate.candidate(), candidate.candidate().url));
         }
+
+        String uniqueFilePath = ensureUniqueFilePath(directoryPath, product.inferredData.getUniqueFileName());
 
         try (FileWriter fw = new FileWriter(new File(uniqueFilePath))) {
             fw.write(sb.toString());
