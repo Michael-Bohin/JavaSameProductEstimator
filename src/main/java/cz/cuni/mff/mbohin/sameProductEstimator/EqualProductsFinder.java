@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.List;
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.NormalizedProduct;
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.Eshop;
+import java.io.File;
 
 public class EqualProductsFinder {
     private final List<NormalizedProduct> kosikProducts;
@@ -25,8 +26,11 @@ public class EqualProductsFinder {
         this.tescoProducts = tescoProducts;
 
         System.out.println("Normalized products have been loaded to same product estimator.");
-        createDirectory(loggingDirectory);
-        createDirectory(resultDirectory);
+
+        File directory = new File(loggingDirectory);
+        boolean wasSuccessful = directory.mkdirs();
+        File directory2 = new File(loggingDirectory);
+        wasSuccessful = directory2.mkdirs();
     }
 
     private void assertAllProductsAreFromSameEshop(List<NormalizedProduct> products, Eshop eshop) {
