@@ -1,7 +1,9 @@
 package cz.cuni.mff.mbohin;
 
+// import cz.cuni.mff.mbohin.productParser.adapters.kosik.KosikAdapter;
 import cz.cuni.mff.mbohin.productParser.adapters.tesco.TescoAdapter;
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.NormalizedProduct;
+// import cz.cuni.mff.mbohin.sameProductEstimator.EqualProductsFinder;
 
 import java.io.IOException;
 import java.util.List;
