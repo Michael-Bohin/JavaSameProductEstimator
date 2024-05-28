@@ -2,6 +2,9 @@ package cz.cuni.mff.mbohin.sameProductEstimator;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.List;
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.NormalizedProduct;
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.Eshop;
@@ -37,14 +40,20 @@ public class EqualProductsFinder {
         // WORK TO DO
     }
 
-    public void sortProbableEqualProducts() {
+    @SuppressWarnings("unused")
+    public void sortProbableEqualProductsAsync() throws InterruptedException {
         EshopSubstrings kosikDict = new EshopSubstrings(kosikProducts);
         EshopSubstrings rohlikDict = new EshopSubstrings(rohlikProducts);
         EshopSubstrings tescoDict = new EshopSubstrings(tescoProducts);
 
-        generateMostProbableEqualProducts(kosikDict, rohlikDict);
-        generateMostProbableEqualProducts(kosikDict, tescoDict);
-        generateMostProbableEqualProducts(rohlikDict, tescoDict);
+        try (ExecutorService executor = Executors.newFixedThreadPool(3)) {
+            executor.submit(() -> generateMostProbableEqualProducts(kosikDict, rohlikDict));
+            executor.submit(() -> generateMostProbableEqualProducts(kosikDict, tescoDict));
+            executor.submit(() -> generateMostProbableEqualProducts(rohlikDict, tescoDict));
+
+            executor.shutdown();
+            boolean terminated = executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        }
     }
 
     private void generateMostProbableEqualProducts(EshopSubstrings eshopA, EshopSubstrings eshopB) {
