@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Implementace metod sortujici kandidaty na stejny product sortCandidatesByLongestCommonSubsequence a sortCandidatesByEditDistance">
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Vytvoreni unikatniho fileName produktu v InfferedData constructoru">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/InferredData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/InferredData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1716861787100</updated>
       <workItem from="1716861788242" duration="10599000" />
-      <workItem from="1716894699366" duration="747000" />
+      <workItem from="1716894699366" duration="1559000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -194,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716873937273</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Vytvoreni unikatniho fileName produktu v InfferedData constructoru">
+      <option name="closed" value="true" />
+      <created>1716900499181</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1716900499181</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +221,7 @@
     <MESSAGE value="Dalsi implementace EqualProductsFinder pres listEqualCandidates az po prvni metodu sortujici kandidaty stejnych preoduktu sortCandidatesBySubstring(NormalizedProduct product, HashSet&lt;NormalizedProduct&gt; candidates, EshopSubstrings largerEshop)" />
     <MESSAGE value="Implementace sortCandidatesByPrefix" />
     <MESSAGE value="Implementace metod sortujici kandidaty na stejny product sortCandidatesByLongestCommonSubsequence a sortCandidatesByEditDistance" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementace metod sortujici kandidaty na stejny product sortCandidatesByLongestCommonSubsequence a sortCandidatesByEditDistance" />
+    <MESSAGE value="Vytvoreni unikatniho fileName produktu v InfferedData constructoru" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vytvoreni unikatniho fileName produktu v InfferedData constructoru" />
   </component>
 </project>

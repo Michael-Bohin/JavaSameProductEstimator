@@ -14,15 +14,7 @@ import java.io.PrintWriter;
 import java.util.Map;
 import java.util.logging.Logger;
 import java.util.logging.Level;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
 import java.util.function.BiFunction;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class EqualProductsFinder {
@@ -30,7 +22,6 @@ public class EqualProductsFinder {
     private final List<NormalizedProduct> rohlikProducts;
     private final List<NormalizedProduct> tescoProducts;
     private static final String loggingDirectory = "./out/equalProductsFinder/", resultDirectory = "./out/equalProductsFinder/results/";
-    private static final int substringResults = 0, prefixResults = 0, LCSResults = 0, lengthAdjustedEditationDistanceResults = 0;
 
     private static final Logger LOGGER = Logger.getLogger("logger");
 
@@ -269,8 +260,8 @@ public class EqualProductsFinder {
     }
 
     public static double calculatePrefixSimilarity(NormalizedProduct product, NormalizedProduct candidate) {
-        String parsedProductName = removeWS(product.name).toLowerCase();
-        String parsedCandidateName = removeWS(candidate.name).toLowerCase();
+        String parsedProductName = product.name.toLowerCase();
+        String parsedCandidateName = candidate.name.toLowerCase();
 
         int commonPrefixLength = commonPrefixLength(parsedProductName, parsedCandidateName);
 
