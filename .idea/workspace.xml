@@ -4,12 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Implemented KosikAdapter">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/kosikProductDataIndented.json" afterDir="false" />
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Implemented the RohlikJsonProduct schema">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Allergens.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Badge.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Carbohydrates.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Country.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/EnergyKCal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/EnergyKJ.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Fats.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Fiber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Filter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Freshness.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Ingredient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Ingredient1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Ingredient2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/NutritionalValue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/PackageInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Price.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/PricePerUnit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/ProductStory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Protein.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Sale.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Salt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/SaturatedFats.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/ShelfLife.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Shelflife1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Sugars.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Tooltip.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Value.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Value1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Value2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/Values.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NutritionalValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NutritionalValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/RohlikJsonProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/RohlikJsonProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/kosikProductData.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +130,7 @@
       <option name="presentableId" value="Default" />
       <updated>1716861787100</updated>
       <workItem from="1716861788242" duration="10599000" />
-      <workItem from="1716894699366" duration="20274000" />
+      <workItem from="1716894699366" duration="23822000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -287,7 +316,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716929396913</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Forced KosikJsonProduct deserialization to not fail">
+      <option name="closed" value="true" />
+      <created>1716930460459</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1716930460459</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,7 +365,9 @@
     <MESSAGE value="Made json tesco product deserialization has been forced to work" />
     <MESSAGE value="Introduced the KosikJsonProduct schema" />
     <MESSAGE value="Implemented KosikAdapter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented KosikAdapter" />
+    <MESSAGE value="Forced KosikJsonProduct deserialization to not fail" />
+    <MESSAGE value="Implemented the RohlikJsonProduct schema" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented the RohlikJsonProduct schema" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
