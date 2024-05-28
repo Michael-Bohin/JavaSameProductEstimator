@@ -1,5 +1,7 @@
 package cz.cuni.mff.mbohin.sameProductEstimator;
 
+import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.NormalizedProduct;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +21,7 @@ public class EshopSubstrings {
     }
 
     private void addSubstringsToDictionary(NormalizedProduct product) {
-        for (String part : product.getInferredData().getLowerCaseNameParts()) {
+        for (String part : product.inferredData.getLowerCaseNameParts()) {
             if (part.length() > 2) {
                 addPartToDictionary(part, product);
             }
@@ -37,7 +39,7 @@ public class EshopSubstrings {
     }
 
     private void consoleLogDictionarySizeStats() {
-        System.out.println("Constructed dictionary of product names substrings to list of product references of eshop " + products.get(0).getEshop());
+        System.out.println("Constructed dictionary of product names substrings to list of product references of eshop " + products.getFirst().eshop);
         System.out.println("Dictionary contains " + substringsToProducts.size() + " keys.");
 
         int counter = 0;
@@ -46,7 +48,7 @@ public class EshopSubstrings {
         }
 
         System.out.println("Sum of all product references " + counter);
-        System.out.println(String.format("Average references per one substring %.2f", (double) counter / substringsToProducts.size()));
-        System.out.println(String.format("Average number of ws split substrings per product %.2f", (double) substringsToProducts.size() / products.size()));
+        System.out.printf("Average references per one substring %.2f%n", (double) counter / substringsToProducts.size());
+        System.out.printf("Average number of ws split substrings per product %.2f%n", (double) substringsToProducts.size() / products.size());
     }
 }

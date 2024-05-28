@@ -1,4 +1,5 @@
 package cz.cuni.mff.mbohin.productParser.normalizedJsonSchema;
 
-public class CountryOfOrigin {
+public enum CountryOfOrigin {
+    CZECH_REPUBLIC
 }
