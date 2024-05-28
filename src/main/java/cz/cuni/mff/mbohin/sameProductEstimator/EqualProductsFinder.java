@@ -23,13 +23,14 @@ import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 
+@SuppressWarnings("unused")
 public class EqualProductsFinder {
     private final List<NormalizedProduct> kosikProducts;
     private final List<NormalizedProduct> rohlikProducts;
     private final List<NormalizedProduct> tescoProducts;
     private static final String loggingDirectory = "./out/equalProductsFinder/", resultDirectory = "./out/equalProductsFinder/results/";
 
-    private static final Logger LOGGER = Logger.getLogger("logger");
+    private static final Logger LOGGER = Logger.getLogger("EqualProductsFinder logger");
 
     public EqualProductsFinder(List<NormalizedProduct> kosikProducts, List<NormalizedProduct> rohlikProducts, List<NormalizedProduct> tescoProducts) {
         assertAllProductsAreFromSameEshop(kosikProducts, Eshop.KOSIK);
@@ -44,7 +45,7 @@ public class EqualProductsFinder {
         File directory = new File(loggingDirectory);
         boolean wasSuccessful = directory.mkdirs();
         File directory2 = new File(loggingDirectory);
-        wasSuccessful = directory2.mkdirs();
+        assert  directory2.mkdirs();
     }
 
     private void assertAllProductsAreFromSameEshop(List<NormalizedProduct> products, Eshop eshop) {
@@ -394,7 +395,7 @@ public class EqualProductsFinder {
             sw.println("ListEqualCandidates method managed to narrow down the candidate list to " + formatWithSpaces(candidatesSum));
             sw.println(String.format("Which is %.2f %% of possible pairs.\n\n", candidatesAllPairsRatioPercentage));
 
-            sw.println(sb.toString());
+            sw.println(sb);
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "An error occurred in logStatsOfCandidates", e);
         }
@@ -419,7 +420,7 @@ public class EqualProductsFinder {
 
         String uniqueFilePath = ensureUniqueFilePath(directoryPath, product.inferredData.getUniqueFileName());
 
-        try (FileWriter fw = new FileWriter(new File(uniqueFilePath))) {
+        try (FileWriter fw = new FileWriter((uniqueFilePath))) {
             fw.write(sb.toString());
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "An error occurred in logSortedCandidates", e);

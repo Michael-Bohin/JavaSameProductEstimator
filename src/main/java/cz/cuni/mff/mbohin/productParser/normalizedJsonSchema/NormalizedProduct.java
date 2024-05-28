@@ -64,23 +64,16 @@ public class NormalizedProduct {
     public void setProducer(String producer) { this.producer = producer; }
     public void setStorageConditions(String conditions) { this.storageConditions = conditions; }
     public void setPieces(int pieces) {
-        if (this.unitType != null) {
-            throw new IllegalStateException("Unit type has been attempted to be set twice.");
-        }
         this.unitType = UnitType.PIECES;
         this.pieces = pieces;
     }
+    @SuppressWarnings("unused")
     public void setWeight(Double weight) {
-        if (this.unitType != null) {
-            throw new IllegalStateException("Unit type has been attempted to be set twice.");
-        }
         this.unitType = UnitType.WEIGHT;
         this.weight = weight;
     }
+    @SuppressWarnings("unused")
     public void setVolume(Double volume) {
-        if (this.unitType != null) {
-            throw new IllegalStateException("Unit type has been attempted to be set twice.");
-        }
         this.unitType = UnitType.VOLUME;
         this.volume = volume;
     }

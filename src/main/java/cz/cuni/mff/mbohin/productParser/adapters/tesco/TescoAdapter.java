@@ -12,6 +12,10 @@ import java.math.BigDecimal;
 
 public class TescoAdapter extends Adapter<TescoJsonProduct> {
 
+    public TescoAdapter() {
+        super(TescoJsonProduct.class);
+    }
+
     @Override
     protected String getNameOf() {
         return "TescoAdapter";
@@ -50,8 +54,8 @@ public class TescoAdapter extends Adapter<TescoJsonProduct> {
         normalizedProduct.setStorageConditions(null);  // information is absent in the webscraped data
         normalizedProduct.unitType = parseUnitType(tescoProduct);
         normalizedProduct.setPieces(1);
-        normalizedProduct.setWeight(null);
-        normalizedProduct.setVolume(null);
+        // normalizedProduct.setWeight(null);
+        // normalizedProduct.setVolume(null);
         normalizedProduct.nutritionalValues = null;  // nutritional values need to be implemented
 
         return normalizedProduct;

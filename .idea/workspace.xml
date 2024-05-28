@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Implemented TescoAdapter">
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Made json tesco product deserialization has been forced to work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/config/RuntimeConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/config/RuntimeConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Adapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/TescoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/TescoAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/TescoPromotion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/TescoPromotion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NormalizedProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NormalizedProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/scrapedEshopData/kosikProductData.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/kosikProductData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/scrapedEshopData/rohlikProductData.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rohlikProductData.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/scrapedEshopData/tescoProductData.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/tescoProductData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +60,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.App.executor": "Run",
+    "Application.App.executor": "Debug",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -68,7 +74,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
@@ -80,6 +86,7 @@
       <recent name="C:\Users\mbohi\IdeaProjects\JavaSameProductEstimator\src\main\java\cz\cuni\mff\mbohin\productParser\scrapedEshopData" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mbohi\IdeaProjects\JavaSameProductEstimator\src\main\resources" />
       <recent name="C:\Users\mbohi\IdeaProjects\JavaSameProductEstimator\src\main\java\cz\cuni\mff\mbohin\productParser\scrapedEshopData" />
     </key>
   </component>
@@ -99,7 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1716861787100</updated>
       <workItem from="1716861788242" duration="10599000" />
-      <workItem from="1716894699366" duration="10509000" />
+      <workItem from="1716894699366" duration="16087000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -253,7 +260,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716919425826</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Implemented TescoAdapter">
+      <option name="closed" value="true" />
+      <created>1716920461044</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1716920461044</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,6 +306,7 @@
     <MESSAGE value="implemented abstract generic class Adapter" />
     <MESSAGE value="Added TescoJsonSchemaClases" />
     <MESSAGE value="Implemented TescoAdapter" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented TescoAdapter" />
+    <MESSAGE value="Made json tesco product deserialization has been forced to work" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made json tesco product deserialization has been forced to work" />
   </component>
 </project>

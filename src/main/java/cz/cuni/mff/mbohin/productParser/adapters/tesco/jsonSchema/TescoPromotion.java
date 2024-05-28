@@ -1,12 +1,11 @@
 package cz.cuni.mff.mbohin.productParser.adapters.tesco.jsonSchema;
 
-import java.time.LocalDateTime;
-
+@SuppressWarnings("unused")
 public class TescoPromotion {
     public String promotionId;
     public String promotionType;
-    public LocalDateTime startDate;
-    public LocalDateTime endDate;
+    public String startDate;
+    public String endDate;
     public Object unitSellingInfo;
     public String offerText;
     public Object price;
