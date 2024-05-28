@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="implemented abstract generic class Adapter">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/TescoCatchweightlist.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/TescoPromotion.java" afterDir="false" />
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Implemented TescoAdapter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Adapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikJsonProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/jsonSchema/KosikJsonProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/RohlikJsonProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/jsonSchema/RohlikJsonProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/TescoJsonProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/TescoJsonProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/config/RuntimeConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/config/RuntimeConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/TescoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/TescoAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/jsonSchema/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NormalizedProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NormalizedProduct.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +99,7 @@
       <option name="presentableId" value="Default" />
       <updated>1716861787100</updated>
       <workItem from="1716861788242" duration="10599000" />
-      <workItem from="1716894699366" duration="9465000" />
+      <workItem from="1716894699366" duration="10509000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -249,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716910280714</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Added TescoJsonSchemaClases">
+      <option name="closed" value="true" />
+      <created>1716919425826</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1716919425826</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,6 +289,8 @@
     <MESSAGE value="limit processed products to increase speed of dev time runs" />
     <MESSAGE value="implemented FileHandler class" />
     <MESSAGE value="implemented abstract generic class Adapter" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented abstract generic class Adapter" />
+    <MESSAGE value="Added TescoJsonSchemaClases" />
+    <MESSAGE value="Implemented TescoAdapter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented TescoAdapter" />
   </component>
 </project>

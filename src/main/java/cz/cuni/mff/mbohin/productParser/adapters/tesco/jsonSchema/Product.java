@@ -1,5 +1,8 @@
 package cz.cuni.mff.mbohin.productParser.adapters.tesco.jsonSchema;
 
+import java.math.BigDecimal;
+
+@SuppressWarnings("unused")
 public class Product {
     public String typename;
     public Object context;
@@ -43,7 +46,7 @@ public class Product {
     public Object details;
     public TescoCatchweightlist[] catchWeightList;
     public Object[] restrictions;
-    public float price;
+    public BigDecimal price;
     public float unitPrice;
     public String unitOfMeasure;
     public Object[] substitutions;

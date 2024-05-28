@@ -1,10 +1,11 @@
 package cz.cuni.mff.mbohin.productParser.normalizedJsonSchema;
 
 import java.util.Optional;
+import java.math.BigDecimal;
 
 public class NormalizedProduct {
     public final String name, url;
-    public final double price;
+    public final BigDecimal price;
     public final Eshop eshop;
 
     public String producer;
@@ -19,12 +20,12 @@ public class NormalizedProduct {
 
     public final InferredData inferredData;
 
-    public NormalizedProduct(String name, String url, double price, Eshop eshop) {
+    public NormalizedProduct(String name, String url, BigDecimal price, Eshop eshop) {
         this.name = assertStringIsNotNullOrEmpty(name);
         this.url = assertStringIsNotNullOrEmpty(url);
         this.eshop = eshop;
 
-        if (price < 0)
+        if (price.compareTo(BigDecimal.ZERO) < 0)
             throw new IllegalArgumentException("Price cannot be negative: " + price);
         this.price = price;
 
@@ -69,14 +70,14 @@ public class NormalizedProduct {
         this.unitType = UnitType.PIECES;
         this.pieces = pieces;
     }
-    public void setWeight(double weight) {
+    public void setWeight(Double weight) {
         if (this.unitType != null) {
             throw new IllegalStateException("Unit type has been attempted to be set twice.");
         }
         this.unitType = UnitType.WEIGHT;
         this.weight = weight;
     }
-    public void setVolume(double volume) {
+    public void setVolume(Double volume) {
         if (this.unitType != null) {
             throw new IllegalStateException("Unit type has been attempted to be set twice.");
         }
