@@ -19,6 +19,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.function.BiFunction;
+import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class EqualProductsFinder {
@@ -248,7 +252,7 @@ public class EqualProductsFinder {
     /// common prefix similarity = CommonPrefixLength( productName,  candidateName) / Math.Min(productName.Length, candidateName.Length)
     ///
     /// In words, we first parse the names by removing whitespaces and make all characters lower case.
-    /// Than we divide the length of common prefix by smaller length out of both names.
+    /// Then we divide the length of common prefix by smaller length out of both names.
     ///
     /// Output:
     /// Sorted list of equal candidates from larger eshop of normalized product of smaller eshop.
@@ -259,8 +263,38 @@ public class EqualProductsFinder {
     /// <param name="candidates"></param>
     /// <param name="largerEshop"></param>
     /// <returns></returns>
-    private static void sortCandidatesByPrefix(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
-        // WORK TO DO
+    public static void sortCandidatesByPrefix(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
+        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculatePrefixSimilarity);
+        logSortedCandidates("prefixSimilarity", sortedCandidates, product, largerEshop);
+    }
+
+    public static double calculatePrefixSimilarity(NormalizedProduct product, NormalizedProduct candidate) {
+        String parsedProductName = removeWS(product.name).toLowerCase();
+        String parsedCandidateName = removeWS(candidate.name).toLowerCase();
+
+        int commonPrefixLength = commonPrefixLength(parsedProductName, parsedCandidateName);
+
+        return (double) commonPrefixLength / Math.min(parsedProductName.length(), parsedCandidateName.length());
+    }
+
+    private static String removeWS(String s) {
+        return s.replaceAll("\\s+", "");
+    }
+
+    private static int commonPrefixLength(String parsedProductName, String parsedCandidateName) {
+        if (parsedProductName == null || parsedCandidateName == null || parsedProductName.isEmpty() || parsedCandidateName.isEmpty())
+            throw new IllegalArgumentException("Critical error in code architecture detected. Parsed product names at this point may not be null or empty.");
+
+        int prefixLength = 0;
+        for (int i = 0; i < Math.min(parsedProductName.length(), parsedCandidateName.length()); i++) {
+            if (parsedProductName.charAt(i) == parsedCandidateName.charAt(i)) {
+                prefixLength++;
+            } else {
+                break;
+            }
+        }
+
+        return prefixLength;
     }
 
     /// <summary>

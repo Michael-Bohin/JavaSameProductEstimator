@@ -3,21 +3,19 @@ package cz.cuni.mff.mbohin.productParser.normalizedJsonSchema;
 import java.util.Optional;
 
 public class NormalizedProduct {
-    private final String name;
-    private final String url;
-    private final double price;
+    public final String name, url;
+    public final double price;
     public final Eshop eshop;
 
-    private String producer;
-    private String description;
-    private String storageConditions;
+    public String producer;
+    public String description;
+    public String storageConditions;
 
-    private UnitType unitType;
-    private Integer pieces;
-    private Double weight;
-    private Double volume;
+    public UnitType unitType;
+    public Integer pieces;
+    public Double weight, volume;
 
-    private NutritionalValues nutritionalValues;
+    public NutritionalValues nutritionalValues;
 
     public final InferredData inferredData;
 
