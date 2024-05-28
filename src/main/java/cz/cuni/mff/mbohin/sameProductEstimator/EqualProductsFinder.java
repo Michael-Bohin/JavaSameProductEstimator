@@ -319,9 +319,18 @@ public class EqualProductsFinder {
     /// <param name="largerEshop"></param>
     /// <returns></returns>
     private static void sortCandidatesByLongestCommonSubsequence(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
-        // WORK TO DO
+        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculateLCS);
+        logSortedCandidates("LongestCommonSubsequenceSimilarity", sortedCandidates, product, largerEshop);
     }
 
+    private static double calculateLCS(NormalizedProduct product, NormalizedProduct candidate) {
+        String parsedProductName = removeWS(product.name).toLowerCase();
+        String parsedCandidateName = removeWS(candidate.name).toLowerCase();
+
+        int LCS = LCSFinder.longestCommonSubsequence(parsedProductName, parsedCandidateName);
+
+        return (double)LCS / Math.min(parsedProductName.length(), parsedCandidateName.length());
+    }
     /// <summary>
     /// Input:
     /// product - one concrete product from smaller eshop
@@ -343,7 +352,17 @@ public class EqualProductsFinder {
     /// <param name="largerEshop"></param>
     /// <returns></returns>
     private static void sortCandidatesByEditDistance(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
-        // WORK TO DO
+        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculateLengthAdjustedEditDistance);
+        logSortedCandidates("LengthAdjustedEditationDistance", sortedCandidates, product, largerEshop);
+    }
+    private static double calculateLengthAdjustedEditDistance(NormalizedProduct product, NormalizedProduct candidate) {
+        String parsedProductName = removeWS(product.name).toLowerCase();
+        String parsedCandidateName = removeWS(candidate.name).toLowerCase();
+
+        int editDistance = LevenshteinDistance.lengthAdjustedEditDistance(parsedProductName, parsedCandidateName);
+        int minLength = Math.min(parsedProductName.length(), parsedCandidateName.length());
+
+        return (double) (minLength - editDistance) / minLength;
     }
 
     private static void logStatsOfCandidates(TreeMap<Integer, Integer> equalCandidatesFrequencies, EshopSubstrings smallerEshop, EshopSubstrings largerEshop) {
