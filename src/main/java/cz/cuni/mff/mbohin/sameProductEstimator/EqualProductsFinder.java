@@ -1,25 +1,27 @@
 package cz.cuni.mff.mbohin.sameProductEstimator;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.List;
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.NormalizedProduct;
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.Eshop;
-import java.io.File;
-import java.util.TreeMap;
-import java.io.PrintWriter;
-import java.util.Map;
-import java.util.logging.Logger;
-import java.util.logging.Level;
+import cz.cuni.mff.mbohin.config.RuntimeConfig;
+
 import java.util.function.BiFunction;
+
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.HashSet;
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.util.Map;
 import java.util.Random;
-
-
+import java.util.TreeMap;
 
 public class EqualProductsFinder {
     private final List<NormalizedProduct> kosikProducts;
@@ -87,7 +89,7 @@ public class EqualProductsFinder {
     /// </summary>
     /// <param name="eshopA"></param>
     /// <param name="eshopB"></param>
-    private static void generateMostProbableEqualProducts(EshopSubstrings eshopA, EshopSubstrings eshopB) {
+  /* private static void generateMostProbableEqualProducts(EshopSubstrings eshopA, EshopSubstrings eshopB) {
         EshopSubstrings smallerEshop = eshopA.products.size() < eshopB.products.size() ? eshopA : eshopB;
         EshopSubstrings largerEshop = eshopA.products.size() >= eshopB.products.size() ? eshopA : eshopB;
 
@@ -95,13 +97,34 @@ public class EqualProductsFinder {
 
         List<ProductHashSetCandidatesPair> equalCandidatesOfProducts = findEqualCandidatesOfProducts(smallerEshop, largerEshop);
 
+        int min =
         for (ProductHashSetCandidatesPair pair : equalCandidatesOfProducts) {
             sortCandidatesBySubstring(pair.product(), pair.candidates(), largerEshop);
             sortCandidatesByPrefix(pair.product(), pair.candidates(), largerEshop);
             sortCandidatesByLongestCommonSubsequence(pair.product(), pair.candidates(), largerEshop);
             sortCandidatesByEditDistance(pair.product(), pair.candidates(), largerEshop);
         }
+    }*/
+    private static void generateMostProbableEqualProducts(EshopSubstrings eshopA, EshopSubstrings eshopB) {
+        EshopSubstrings smallerEshop = eshopA.products.size() < eshopB.products.size() ? eshopA : eshopB;
+        EshopSubstrings largerEshop = eshopA.products.size() >= eshopB.products.size() ? eshopA : eshopB;
+        createLoggingDirectory(smallerEshop, largerEshop);
+
+        List<ProductHashSetCandidatesPair> equalCandidatesOfProducts = findEqualCandidatesOfProducts(smallerEshop, largerEshop);
+
+        int min = Math.min(RuntimeConfig.limitProcessedProducts, equalCandidatesOfProducts.size());
+        for (int i = 0; i < min; i++) {
+            ProductHashSetCandidatesPair productAndCandidates = equalCandidatesOfProducts.get(i);
+            NormalizedProduct product = productAndCandidates.product();
+            HashSet<NormalizedProduct> candidates = productAndCandidates.candidates();
+
+            sortCandidatesBySubstring(product, candidates, largerEshop);
+            sortCandidatesByPrefix(product, candidates, largerEshop);
+            sortCandidatesByLongestCommonSubsequence(product, candidates, largerEshop);
+            sortCandidatesByEditDistance(product, candidates, largerEshop);
+        }
     }
+
 
     private static void createLoggingDirectory(EshopSubstrings smallerEshop, EshopSubstrings largerEshop) {
         if (smallerEshop.products.isEmpty() || largerEshop.products.isEmpty())
