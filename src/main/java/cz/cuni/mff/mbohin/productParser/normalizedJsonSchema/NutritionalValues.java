@@ -31,7 +31,7 @@ public class NutritionalValues {
     }
 
     private void assertIsNonNegative(BigDecimal d) {
-        if (d.compareTo(BigDecimal.ZERO) >= 0)
+        if (d.compareTo(BigDecimal.ZERO) < 0)
             throw new IllegalArgumentException("Value cannot be negative: " + d);
     }
 

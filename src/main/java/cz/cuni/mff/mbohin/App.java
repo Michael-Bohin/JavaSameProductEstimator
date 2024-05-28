@@ -1,6 +1,7 @@
 package cz.cuni.mff.mbohin;
 
-// import cz.cuni.mff.mbohin.productParser.adapters.kosik.KosikAdapter;
+// import cz.cuni.mff.mbohin.productParser.adapters.rohlik.RohlikAdapter;
+import cz.cuni.mff.mbohin.productParser.adapters.kosik.KosikAdapter;
 import cz.cuni.mff.mbohin.productParser.adapters.tesco.TescoAdapter;
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.NormalizedProduct;
 // import cz.cuni.mff.mbohin.sameProductEstimator.EqualProductsFinder;
@@ -15,7 +16,7 @@ public class App
         long startTime = System.nanoTime();
 
         // Parsing Kosik products
-        /*/KosikAdapter ka = new KosikAdapter();
+        /**/KosikAdapter ka = new KosikAdapter();
         List<NormalizedProduct> kosikProducts = ka.getNormalizedProducts();/**/
 
         // Parsing Rohlik products

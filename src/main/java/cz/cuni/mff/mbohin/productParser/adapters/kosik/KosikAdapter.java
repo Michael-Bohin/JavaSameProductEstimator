@@ -14,7 +14,6 @@ import cz.cuni.mff.mbohin.productParser.adapters.kosik.jsonSchema.KosikJsonProdu
 
 import java.math.BigDecimal;
 
-@SuppressWarnings("unused")
 public class KosikAdapter extends Adapter<KosikJsonProduct> {
     public KosikAdapter() {
         super(KosikJsonProduct.class);
@@ -99,9 +98,9 @@ public class KosikAdapter extends Adapter<KosikJsonProduct> {
             switch (value.title) {
                 case "Energetická hodnota":
                     if ("kJ".equals(value.unit))
-                        energetickaKJ = Integer.parseInt(value.value);
+                        energetickaKJ = parseStringToInt(value.value);
                     else if ("kcal".equals(value.unit))
-                        energetickaKCAL = Integer.parseInt(value.value);
+                        energetickaKCAL = parseStringToInt(value.value);
                     break;
                 case "Tuky":
                     tuky = new BigDecimal(value.value);
@@ -128,6 +127,14 @@ public class KosikAdapter extends Adapter<KosikJsonProduct> {
         }
 
         return new NutritionalValues(energetickaKJ, energetickaKCAL, tuky, mastneKyseliny, sacharidy, cukry, bilkoviny, sul, vlaknina);
+    }
+
+    private static int parseStringToInt(String stringValue) {
+        try {
+            return Integer.parseInt(stringValue.split("\\.")[0]);
+        } catch (NumberFormatException e) {
+            return 0;  // Return default value if parsing fails, usually in our data set when running into a string that represents double value
+        }
     }
 }
 
