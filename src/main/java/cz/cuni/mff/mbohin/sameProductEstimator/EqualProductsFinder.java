@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -28,7 +29,7 @@ public class EqualProductsFinder {
     private final List<NormalizedProduct> kosikProducts;
     private final List<NormalizedProduct> rohlikProducts;
     private final List<NormalizedProduct> tescoProducts;
-    private static final String loggingDirectory = "./out/equalProductsFinder/", resultDirectory = "./out/equalProductsFinder/results/";
+    private static final String loggingDirectory = "./out/equalProductsFinder/";
 
     private static final Logger LOGGER = Logger.getLogger("EqualProductsFinder logger");
 
@@ -42,10 +43,7 @@ public class EqualProductsFinder {
 
         System.out.println("Normalized products have been loaded to same product estimator.\n");
 
-        File directory = new File(loggingDirectory);
-        boolean wasSuccessful = directory.mkdirs();
-        File directory2 = new File(loggingDirectory);
-        assert  directory2.mkdirs();
+        prepareStateOfOutputDirectories(kosikProducts, rohlikProducts, tescoProducts);
     }
 
     private void assertAllProductsAreFromSameEshop(List<NormalizedProduct> products, Eshop eshop) {
@@ -54,6 +52,64 @@ public class EqualProductsFinder {
                 throw new IllegalArgumentException("Product is expected to be normalized from eshop " + eshop + ", but instead it is from " + product.eshop + ".");
         }
     }
+
+    private void prepareStateOfOutputDirectories(List<NormalizedProduct> kosikProducts, List<NormalizedProduct> rohlikProducts, List<NormalizedProduct> tescoProducts) {
+        File directory = new File(loggingDirectory);
+        boolean wasSuccessful = directory.mkdirs();
+        File directory2 = new File(loggingDirectory);
+        assert  directory2.mkdirs();
+
+        List<String> similarityTypes = Arrays.asList(
+            "substringSimilarity",
+            "prefixSimilarity",
+            "LongestCommonSubsequenceSimilarity",
+            "LengthAdjustedEditationDistance"
+        );
+
+        List<String> eshopPairs = formEshopPairsBasedOnSize(kosikProducts, rohlikProducts, tescoProducts);
+
+        for(var similarityType : similarityTypes) {
+            for (var eshopPair : eshopPairs) {
+                String directoryForCleanUp = loggingDirectory + eshopPair + "/" + similarityType + "/";
+                deleteTextFiles(directoryForCleanUp);
+            }
+        }
+    }
+
+    public static List<String> formEshopPairsBasedOnSize(List<NormalizedProduct> kosikProducts, List<NormalizedProduct> rohlikProducts, List<NormalizedProduct> tescoProducts) {
+        List<String> results = new ArrayList<>();
+        results.add(compareTwoProductLists(kosikProducts, rohlikProducts));
+        results.add(compareTwoProductLists(kosikProducts, tescoProducts));
+        results.add(compareTwoProductLists(rohlikProducts, tescoProducts));
+        return results;
+    }
+
+    private static String compareTwoProductLists(List<NormalizedProduct> firstList, List<NormalizedProduct> secondList) {
+        if (firstList.size() < secondList.size()) {
+            return firstList.getFirst().eshop + "_to_" + secondList.getFirst().eshop;
+        } else {
+            return secondList.getFirst().eshop + "_to_" + firstList.getFirst().eshop;
+        }
+    }
+
+    /// <summary>
+    /// Asserts that string param is indeed a directory and deletes all files with "txt" extension.
+    /// </summary>
+    public static void deleteTextFiles(String directoryPath) {
+        File directory = new File(directoryPath);
+
+        if (directory.exists() && directory.isDirectory()) {
+            File[] files = directory.listFiles((dir, name) -> name.endsWith(".txt"));
+            if (files != null) {
+                for (File file : files) {
+                    assert !file.isFile() || file.delete();
+                }
+            }
+        } else {
+            System.out.println("The provided path does not exist or is not a directory.");
+        }
+    }
+
 
     /// <summary>
     /// 1. Foreach eshop creates dictionaries substrings in names to list of references of products
