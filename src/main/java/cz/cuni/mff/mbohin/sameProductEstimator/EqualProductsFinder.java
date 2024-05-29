@@ -92,9 +92,13 @@ public class EqualProductsFinder {
         }
     }
 
-    /// <summary>
-    /// Asserts that string param is indeed a directory and deletes all files with "txt" extension.
-    /// </summary>
+    /**
+     * Asserts that the specified string parameter is indeed a directory, and deletes all files with a ".txt" extension.
+     * It checks if the directory exists and is a directory, then finds and deletes all ".txt" files within.
+     * If the path is not valid or not a directory, it prints an error message.
+     *
+     * @param directoryPath the path to the directory where text files will be deleted
+     */
     public static void deleteTextFiles(String directoryPath) {
         File directory = new File(directoryPath);
 
@@ -114,7 +118,7 @@ public class EqualProductsFinder {
     /// <summary>
     /// 1. Foreach eshop creates dictionaries substrings in names to list of references of products
     /// 2. Foreach eshop pair
-    /// 3.		For eshop e with less products
+    /// 3.		For eshop e with fewer products
     /// 4.			For each product in eshop e
     /// 5.				Creates & saves sorted list of most probable equal products
     /// </summary>
@@ -134,17 +138,18 @@ public class EqualProductsFinder {
         }
     }
 
-    /// <summary>
-    /// Pick eshop e with lower number of products.
-    /// For each product from eshop e generate list of most probable equal products.
-    /// Foreach each product from smaller eshop sort the candidates by differet measures.
-    ///		a. Ratio of equal substrings
-    ///		b. Same longest prefix
-    ///		c. Longest common subsequence
-    ///		d. Editacni vzdalenost nazvu
-    /// </summary>
-    /// <param name="eshopA"></param>
-    /// <param name="eshopB"></param>
+    /**
+     * Identifies the e-shop with fewer products and generates a list of most probable equal products for each product in this smaller e-shop.
+     * It then sorts the list of candidates from the larger e-shop based on different measures to find the best matches. The sorting criteria include:
+     * a. Ratio of equal substrings.
+     * b. Same longest prefix.
+     * c. Longest common subsequence.
+     * d. Edit distance of product names.
+     * This method aims to optimize product matching across e-shops by focusing on the smaller inventory to reduce computational demand and enhance accuracy.
+     *
+     * @param eshopA the first e-shop to compare
+     * @param eshopB the second e-shop to compare
+     */
     private static void generateMostProbableEqualProducts(EshopSubstrings eshopA, EshopSubstrings eshopB) {
         EshopSubstrings smallerEshop = eshopA.products.size() < eshopB.products.size() ? eshopA : eshopB;
         EshopSubstrings largerEshop = eshopA.products.size() >= eshopB.products.size() ? eshopA : eshopB;
@@ -164,13 +169,16 @@ public class EqualProductsFinder {
         }
     }
 
-    /// <summary>
-    /// Create a preliminary list of possible equal products by creating a list of all products that have
-    ///	at least one same substring in their name.
-    /// </summary>
-    /// <param name="product"></param>
-    /// <param name="largerEshop"></param>
-    /// <param name="outRoot"></param>
+    /**
+     * Generates a list of potential matching products between a smaller and a larger e-shop based on substring analysis.
+     * Each product in the smaller e-shop is compared against all products in the larger e-shop to determine a set of probable equal products.
+     * This method also logs the frequency of equal candidates found for each product, helping in the analysis of data matching density.
+     *
+     * @param smallerEshop the e-shop with fewer products, from which products are compared
+     * @param largerEshop the e-shop with more products, against which comparisons are made
+     * @return a list of {@link ProductHashSetCandidatesPair} objects, each representing a product from the smaller e-shop
+     *         and its set of potential matching products from the larger e-shop
+     */
     private static List<ProductHashSetCandidatesPair> findEqualCandidatesOfProducts(EshopSubstrings smallerEshop, EshopSubstrings largerEshop) {
         TreeMap<Integer, Integer> equalCandidatesFrequencies = new TreeMap<>();
         List<ProductHashSetCandidatesPair> equalCandidatesOfProducts = new ArrayList<>();
@@ -188,19 +196,16 @@ public class EqualProductsFinder {
         return equalCandidatesOfProducts;
     }
 
-    /// <summary>
-    /// Method splits product name on whitespaces into string array.
-    /// The hashset of equal candidates is than created by adding all product references that contain
-    /// at least one same substring in their name. This information can be looked up in linear time thanks
-    /// to the substring dictionary in largerEshop class.
-    ///
-    /// Only substrings with length of at least three characters are considered, since substrings with
-    /// one or two characters are more likely to connect semantically unrelated products.
-    /// </summary>
-    /// <param name="productName"></param>
-    /// <param name="largerEshop"></param>
-    /// <returns></returns>
-
+    /**
+     * Splits the product name into an array of strings based on whitespace and creates a HashSet of equal candidates.
+     * It adds all product references that share at least one substring in their names, which can be efficiently checked
+     * using the substring dictionary in the largerEshop class. Only substrings of at least three characters are considered,
+     * as shorter substrings often connect semantically unrelated products.
+     *
+     * @param product the product for which to find equal candidates
+     * @param largerEshop the e-shop class containing the substring dictionary
+     * @return a HashSet containing all probable equal products
+     */
     private static HashSet<NormalizedProduct> listEqualCandidates(NormalizedProduct product, EshopSubstrings largerEshop) {
         HashSet<NormalizedProduct> equalCandidates = new HashSet<>();
 
@@ -217,32 +222,30 @@ public class EqualProductsFinder {
         return equalCandidates;
     }
 
-    /// <summary>
-    /// Input:
-    /// product - one concrete product from smaller eshop
-    /// candidates - n candidates of equal products from larger eshop
-    ///
-    /// Foreach pair (product, candidate i) method calculates similarity by equal substrings ratio which is defined as:
-    ///
-    /// substrings similarity = equal substrings count / Min( product.name.Split(' ').Length, candidate.name.Split(' ').Length )
-    ///
-    /// In words, we take number of equal substrings recieved after spliting product's name on whitespace and divide with
-    /// the smaller number of substrings of both products.
-    ///
-    /// Output:
-    /// Sorted list of equal candidates from larger eshop of normalized product of smaller eshop.
-    /// Sorted by substrings similarity.
-    ///
-    /// </summary>
-    /// <param name="product"></param>
-    /// <param name="candidates"></param>
-    /// <param name="largerEshop"></param>
-    /// <returns></returns>
+    /**
+     * Calculates the similarity between a product from a smaller e-shop and multiple candidate products from a larger e-shop based on the ratio of equal substrings.
+     * The similarity by equal substrings ratio is defined as the count of equal substrings divided by the minimum number of substrings obtained by splitting
+     * the names of both the product and the candidate. This method sorts the candidates from the larger e-shop based on the calculated substring similarity.
+     *
+     * @param product the product from the smaller e-shop
+     * @param candidates a set of candidate products from the larger e-shop
+     * @param largerEshop the larger e-shop class providing additional context
+     */
     private static void sortCandidatesBySubstring(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
         List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculateSubstringSimilarity);
         logSortedCandidates("substringSimilarity", product, largerEshop, sortedCandidates);
     }
 
+    /**
+     * Sorts a set of candidate products based on their similarity to a given product. The similarity is calculated using a specified
+     * function that compares the product and each candidate. The method returns a list of candidates paired with their similarity scores,
+     * sorted in descending order of similarity.
+     *
+     * @param product the reference product from which similarity is measured
+     * @param candidates a set of candidate products to be compared with the reference product
+     * @param calculateSimilarity a function that computes the similarity between two products, returning a double value
+     * @return a list of SimilarityCandidatePair objects, each containing a candidate and its similarity score, sorted by similarity in descending order
+     */
     private static List<SimilarityCandidatePair> sortCandidates(NormalizedProduct product, HashSet<NormalizedProduct> candidates, BiFunction<NormalizedProduct, NormalizedProduct, Double> calculateSimilarity) {
         List<SimilarityCandidatePair> sortedCandidates = new ArrayList<>();
         for (NormalizedProduct candidate : candidates) {
@@ -253,7 +256,17 @@ public class EqualProductsFinder {
         return sortedCandidates;
     }
 
-
+    /**
+     * Calculates the similarity between two products based on the ratio of shared substrings.
+     * The similarity is defined as the count of equal substrings that both products have, divided by the
+     * smaller total number of substrings from either product. This method throws an exception if no common
+     * substrings are found, indicating a potential misuse or critical error in code architecture.
+     *
+     * @param product the first product for similarity comparison
+     * @param candidate the second product for similarity comparison
+     * @return the calculated similarity ratio as a double
+     * @throws IllegalArgumentException if there are no common substrings between the two products
+     */
     private static double calculateSubstringSimilarity(NormalizedProduct product, NormalizedProduct candidate) {
         HashSet<String> productSubstrings = getSubstringsSet(product);
         HashSet<String> candidateSubstrings = getSubstringsSet(candidate);
@@ -277,34 +290,30 @@ public class EqualProductsFinder {
         return new HashSet<>(product.inferredData.getLowerCaseNameParts());
     }
 
-    /// <summary>
-    /// Input:
-    /// product - one concrete product from smaller eshop
-    /// candidates - n candidates of equal products from larger eshop
-    ///
-    /// Foreach pair (product, candidate i) method calculates similarity by common prefix length ratio which is defined as:
-    ///
-    /// string productName = product.name.RemoveWS().ToLower()
-    /// string candidateName = (candidate i).name.RemoveWS().ToLower()
-    /// common prefix similarity = CommonPrefixLength( productName,  candidateName) / Math.Min(productName.Length, candidateName.Length)
-    ///
-    /// In words, we first parse the names by removing whitespaces and make all characters lower case.
-    /// Then we divide the length of common prefix by smaller length out of both names.
-    ///
-    /// Output:
-    /// Sorted list of equal candidates from larger eshop of normalized product of smaller eshop.
-    /// Sorted by  common prefix similarity.
-    ///
-    /// </summary>
-    /// <param name="product"></param>
-    /// <param name="candidates"></param>
-    /// <param name="largerEshop"></param>
-    /// <returns></returns>
+    /**
+     * Sorts a set of candidate products from a larger e-shop based on their common prefix similarity with a given product from a smaller e-shop.
+     * The similarity is calculated by first normalizing the product names (removing whitespaces and converting to lowercase), then determining
+     * the length of the common prefix between each pair of product names, and finally dividing this length by the
+     * shorter of the two name lengths. This method returns a sorted list of candidates based on this common prefix similarity.
+     *
+     * @param product the product from the smaller e-shop
+     * @param candidates a set of candidate products from the larger e-shop
+     * @param largerEshop the e-shop containing the candidates
+     */
     public static void sortCandidatesByPrefix(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
         List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculatePrefixSimilarity);
         logSortedCandidates("prefixSimilarity", product, largerEshop, sortedCandidates);
     }
 
+    /**
+     * Calculates the similarity between two products based on the length of their common prefix. The product names are first normalized
+     * by converting them to lowercase. The similarity ratio is determined by the length of the common prefix divided by the minimum length
+     * of the two product names. This method provides a measure of how similar two product names are, based purely on the initial characters they share.
+     *
+     * @param product the first product for prefix similarity comparison
+     * @param candidate the second product for prefix similarity comparison
+     * @return the similarity ratio as a double, representing the proportion of the common prefix length to the shorter product name length
+     */
     public static double calculatePrefixSimilarity(NormalizedProduct product, NormalizedProduct candidate) {
         String parsedProductName = product.name.toLowerCase();
         String parsedCandidateName = candidate.name.toLowerCase();
@@ -318,6 +327,16 @@ public class EqualProductsFinder {
         return s.replaceAll("\\s+", "");
     }
 
+    /**
+     * Computes the length of the common prefix between two strings. This method iteratively compares characters
+     * from the start of both strings and counts how many characters are identical until it encounters a mismatch.
+     * It requires that neither string be null nor empty, throwing an IllegalArgumentException if this precondition is not met.
+     *
+     * @param parsedProductName the normalized name of the first product
+     * @param parsedCandidateName the normalized name of the second product
+     * @return the length of the common prefix shared by the two product names
+     * @throws IllegalArgumentException if either input string is null or empty, indicating improper prior processing
+     */
     private static int commonPrefixLength(String parsedProductName, String parsedCandidateName) {
         if (parsedProductName == null || parsedCandidateName == null || parsedProductName.isEmpty() || parsedCandidateName.isEmpty())
             throw new IllegalArgumentException("Critical error in code architecture detected. Parsed product names at this point may not be null or empty.");
@@ -334,32 +353,32 @@ public class EqualProductsFinder {
         return prefixLength;
     }
 
-    /// <summary>
-    /// Input:
-    /// product - one concrete product from smaller eshop
-    /// candidates - n candidates of equal products from larger eshop
-    ///
-    /// Foreach pair (product, candidate i) method calculates similarity by longest common subsequence ratio which is defined as:
-    ///
-    /// LCS ratio = LCS length / Min( product.name.RemoveWS().Length, candidate.name.RemoveWS().Length )
-    ///
-    /// In words, we take the length of LCS of parsed product names and divide with
-    /// the smaller number of substrings of both products.
-    ///
-    /// Output:
-    /// Sorted list of equal candidates from larger eshop of normalized product of smaller eshop.
-    /// Sorted by substrings similarity.
-    ///
-    /// </summary>
-    /// <param name="product"></param>
-    /// <param name="candidates"></param>
-    /// <param name="largerEshop"></param>
-    /// <returns></returns>
+    /**
+     * Sorts a list of candidate products from a larger e-shop based on their common prefix similarity with a given product from a smaller e-shop.
+     * The similarity is calculated by first normalizing the product names (removing whitespaces and converting to lowercase),
+     * then determining the length of the common prefix between each pair of product names, and finally dividing this length by the
+     * shorter of the two name lengths. The method returns a sorted list of candidates based on this common prefix similarity.
+     *
+     * @param product the product from the smaller e-shop
+     * @param candidates a set of candidate products from the larger e-shop
+     * @param largerEshop the e-shop containing the candidates
+     */
     private static void sortCandidatesByLongestCommonSubsequence(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
         List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculateLCS);
         logSortedCandidates("LongestCommonSubsequenceSimilarity", product, largerEshop, sortedCandidates);
     }
 
+    /**
+     * Calculates the similarity between two products based on the longest common subsequence (LCS) of their names.
+     * The names are first preprocessed by removing all whitespaces and converting them to lowercase. The LCS is computed,
+     * and the similarity ratio is determined by dividing the LCS length by the minimum length of the two processed names.
+     * This method provides a normalized measure of similarity that accounts for the longest sequence of characters that appear
+     * in both names in the same order.
+     *
+     * @param product the first product for LCS similarity comparison
+     * @param candidate the second product for LCS similarity comparison
+     * @return the similarity ratio as a double, representing the length of LCS divided by the shortest name length
+     */
     private static double calculateLCS(NormalizedProduct product, NormalizedProduct candidate) {
         String parsedProductName = removeWS(product.name).toLowerCase();
         String parsedCandidateName = removeWS(candidate.name).toLowerCase();
@@ -368,30 +387,32 @@ public class EqualProductsFinder {
 
         return (double)LCS / Math.min(parsedProductName.length(), parsedCandidateName.length());
     }
-    /// <summary>
-    /// Input:
-    /// product - one concrete product from smaller eshop
-    /// candidates - n candidates of equal products from larger eshop
-    ///
-    /// Foreach pair (product, candidate i) method calculates similarity by length adjusted editn distance which is defined as:
-    ///
-    /// string productName = product.name.RemoveWS().ToLower()
-    /// string candidateName = (candidate i).name.RemoveWS().ToLower()
-    /// length adjusted edit distance = EditationDistance(productName, candidateName) - Math.Abs(productName - candidateName)
-    ///
-    /// Output:
-    /// Sorted list of equal candidates from larger eshop of normalized product of smaller eshop.
-    /// Sorted by length adjusted editation distance.
-    ///
-    /// </summary>
-    /// <param name="product"></param>
-    /// <param name="candidates"></param>
-    /// <param name="largerEshop"></param>
-    /// <returns></returns>
+
+    /**
+     * Sorts a list of candidate products from a larger e-shop based on their length-adjusted edit distance similarity with a given product from a smaller e-shop.
+     * The similarity is calculated by normalizing the product names (removing whitespaces and converting to lowercase), then computing the edit distance,
+     * and adjusting it by subtracting the absolute difference in length between the two names. This method returns a sorted list of candidates based on this
+     * adjusted edit distance.
+     *
+     * @param product the product from the smaller e-shop
+     * @param candidates a set of candidate products from the larger e-shop
+     * @param largerEshop the e-shop containing the candidates
+     */
     private static void sortCandidatesByEditDistance(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
         List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculateLengthAdjustedEditDistance);
         logSortedCandidates("LengthAdjustedEditationDistance", product, largerEshop, sortedCandidates);
     }
+
+    /**
+     * Calculates the length-adjusted edit distance similarity between two products. The product names are first normalized by removing
+     * whitespaces and converting to lowercase. The edit distance is then adjusted by subtracting the absolute difference in name lengths.
+     * This adjusted value is normalized by dividing by the minimum length of the two names, yielding a similarity score that accounts for
+     * name length discrepancies.
+     *
+     * @param product the first product for similarity comparison
+     * @param candidate the second product for similarity comparison
+     * @return the normalized length-adjusted edit distance as a double, providing a similarity measure between the two products
+     */
     private static double calculateLengthAdjustedEditDistance(NormalizedProduct product, NormalizedProduct candidate) {
         String parsedProductName = removeWS(product.name).toLowerCase();
         String parsedCandidateName = removeWS(candidate.name).toLowerCase();
@@ -401,6 +422,7 @@ public class EqualProductsFinder {
 
         return (double) (minLength - editDistance) / minLength;
     }
+
 
     private static void logStatsOfCandidates(TreeMap<Integer, Integer> equalCandidatesFrequencies, EshopSubstrings smallerEshop, EshopSubstrings largerEshop) {
         Eshop smallerName = smallerEshop.products.getFirst().eshop;
@@ -441,6 +463,17 @@ public class EqualProductsFinder {
         return String.format("%,d", number);
     }
 
+    /**
+     * Logs the sorted list of candidate products based on their similarity to a product from a smaller e-shop.
+     * This method constructs a directory path based on the product and similarity type, creates the directory if it does not exist,
+     * and logs details of the similarity comparison into a file within this directory. Each entry includes the similarity score,
+     * candidate product name, and URL. If the directory cannot be created or a file writing error occurs, it logs a severe error.
+     *
+     * @param similarityType the type of similarity by which the candidates are sorted (e.g., "substringSimilarity")
+     * @param product the reference product from the smaller e-shop
+     * @param largerEshop the larger e-shop containing candidate products
+     * @param sortedCandidates a list of candidates sorted by the specified similarity type, each paired with their similarity score
+     */
     public static void logSortedCandidates(String similarityType, NormalizedProduct product, EshopSubstrings largerEshop, List<SimilarityCandidatePair> sortedCandidates) {
         NormalizedProduct largerName = largerEshop.products.getFirst();
         String directoryPath = loggingDirectory + product.eshop + "_to_" + largerName.eshop + "/" + similarityType + "/";
@@ -466,6 +499,15 @@ public class EqualProductsFinder {
         }
     }
 
+    /**
+     * Ensures that the file path is unique within the specified directory by appending a random number to the filename if necessary.
+     * It checks if a file with the given name already exists in the directory; if it does, it generates a new filename with a random number
+     * appended to the base filename until a unique filename is obtained. The method finally returns the path of this unique file.
+     *
+     * @param directory the directory in which to check for uniqueness of the file
+     * @param filename the initial filename (without an extension) to use for creating the file
+     * @return the unique file path as a String
+     */
     public static String ensureUniqueFilePath(String directory, String filename) {
         File file = new File(directory, filename + ".txt");
         while (file.exists()) {

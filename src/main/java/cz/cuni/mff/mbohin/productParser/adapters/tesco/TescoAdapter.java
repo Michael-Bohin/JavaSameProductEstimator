@@ -10,8 +10,25 @@ import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.UnitType;
 
 import java.math.BigDecimal;
 
+/**
+ * An implementation of the {@link Adapter} class specific to Tesco's e-shop. The TescoAdapter handles the parsing
+ * and normalization of product data from Tesco-specific JSON structures into a common format defined by the {@link NormalizedProduct} class.
+ * This class is designed to facilitate the integration of Tesco product data into a larger system that may handle multiple types of e-shop data formats.
+ *
+ * <p>The TescoAdapter extends the generic functionality provided by the {@link Adapter} abstract class and implements all necessary abstract methods
+ * to cater to the specific requirements of Tesco product data. These implementations include methods to check for critical null fields,
+ * parse product details into a normalized structure, and provide identifiers for logging and data handling purposes specific to Tesco.</p>
+ *
+ * <p>This adapter utilizes JSON parsing to convert raw product data from Tesco into structured data ready for various applications such as e-commerce platforms,
+ * price comparison tools, or inventory management systems. It ensures that all critical components of the data such as product name, ID, and price are validated and
+ * properly handled to maintain data integrity and usability.</p>
+ */
 public class TescoAdapter extends Adapter<TescoJsonProduct> {
 
+    /**
+     * Constructs a new TescoAdapter.
+     * TescoJsonProduct.class reference is passed to its generic predecessor to be used in Jackson JSON deserialization.
+     */
     public TescoAdapter() {
         super(TescoJsonProduct.class);
     }

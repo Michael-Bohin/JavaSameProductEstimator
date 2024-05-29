@@ -10,6 +10,26 @@ import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.UnitType;
 
 import java.math.BigDecimal;
 
+/**
+ * The RohlikAdapter class extends the generic {@link Adapter} to handle the specific requirements and data format of Rohlik's e-shop.
+ * It processes Rohlik-specific JSON product data into a normalized format that can be used across various systems or platforms.
+ * This adapter focuses on parsing critical product attributes such as name, URL, and price while managing potential additional details
+ * like brand and storage conditions, which may require specialized handling due to their format (e.g., HTML content).
+ *
+ * <p>Implementations of abstract methods in this class ensure the integrity and usability of Rohlik's data by checking for null values in essential fields,
+ * converting HTML descriptions to plain text where necessary, and accurately categorizing product units. The class uses {@link RohlikJsonProduct}
+ * as its type parameter to facilitate type-safe data handling and parsing within the Rohlik e-commerce framework.</p>
+ *
+ * <p>This class specifically provides functionality to:
+ * - Validate product data integrity.
+ * - Parse JSON data to a normalized structure.
+ * - Log and handle data relative to the Rohlik e-shop configuration.
+ * - Convert product unit types from specific codes to a generalized enum format for better usability in a diverse system environment.</p>
+ *
+ * @see Adapter
+ * @see NormalizedProduct
+ * @see RohlikJsonProduct
+ */
 public class RohlikAdapter extends Adapter<RohlikJsonProduct> {
 
     public RohlikAdapter() {

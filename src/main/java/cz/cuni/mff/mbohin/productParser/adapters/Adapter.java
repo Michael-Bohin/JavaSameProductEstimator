@@ -12,6 +12,22 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Provides a framework for adapting product json schemas of online eshops data into a normalized format across different e-shops.
+ * This abstract class defines a template for processing and normalizing data specific to each e-shop by implementing several
+ * abstract methods that handle critical property checks, parsing, and data retrieval. It leverages generics to handle any type
+ * of product model while ensuring type safety and reducing code redundancy. The class also handles deserialization of JSON data
+ * into product models, management of data normalization, and logging of the results.
+ *
+ * <p>Each concrete adapter class must define the specific behaviors for:
+ * - Checking critical properties of the product model to ensure they are not null.
+ * - Parsing the product model into a standardized format used across different e-shops.
+ * - Retrieving the name of the adapter, which typically corresponds to the e-shop's name.
+ * - Defining the relative path to the data source.
+ * - Determining the type of e-shop represented by the adapter.</p>
+ *
+ * @param <T> the type of product model that this adapter will process
+ */
 public abstract class Adapter<T> {
 
     private final Class<T> typeParameterClass;

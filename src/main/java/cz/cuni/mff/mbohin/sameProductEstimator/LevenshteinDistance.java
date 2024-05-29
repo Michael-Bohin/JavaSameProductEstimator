@@ -1,6 +1,19 @@
 package cz.cuni.mff.mbohin.sameProductEstimator;
 
 public class LevenshteinDistance {
+
+    /**
+     * Computes the length-adjusted edit distance between two strings. The edit distance is the minimum number of operations
+     * required to transform one string into the other, with operations being insertions, deletions, or substitutions. This
+     * method adjusts the raw edit distance by subtracting the absolute difference in the lengths of the two strings, ensuring
+     * that the edit distance does not unfairly penalize strings of different lengths. The method also checks for a possible
+     * negative result, which would indicate an error in the logic, throwing an IllegalStateException in such a case.
+     *
+     * @param x the first string
+     * @param y the second string
+     * @return the adjusted edit distance between the two strings
+     * @throws IllegalStateException if the result of the length adjustment is negative, indicating a flaw in the method's logic
+     */
     public static int lengthAdjustedEditDistance(String x, String y) {
         int n = x.length();
         int m = y.length();

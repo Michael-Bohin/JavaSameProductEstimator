@@ -2,6 +2,15 @@ package cz.cuni.mff.mbohin.sameProductEstimator;
 
 public class LCSFinder {
 
+    /**
+     * Calculates the length of the longest common subsequence (LCS) between two strings. The LCS is the longest sequence of characters
+     * that appear in the same order in both strings but not necessarily consecutively. This method uses dynamic programming to build
+     * a table of LCS lengths for all substrings, which allows it to determine the LCS length for the entire strings efficiently.
+     *
+     * @param x the first string
+     * @param y the second string
+     * @return the length of the longest common subsequence between the two strings
+     */
     public static int longestCommonSubsequence(String x, String y) {
         int m = x.length();
         int n = y.length();

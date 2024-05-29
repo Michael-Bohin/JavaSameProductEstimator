@@ -14,6 +14,28 @@ import cz.cuni.mff.mbohin.productParser.adapters.kosik.jsonSchema.KosikJsonProdu
 
 import java.math.BigDecimal;
 
+/**
+ * The KosikAdapter class extends the generic {@link Adapter} framework to specifically handle and process product data
+ * from Kosik's e-shop. This class adapts Kosik's specific JSON schema into a unified format defined by the
+ * {@link NormalizedProduct} class, ensuring that the product data can be seamlessly integrated and utilized across
+ * various systems and platforms.
+ *
+ * <p>The adapter focuses on handling essential product attributes such as URLs, pricing, names, and detailed descriptions,
+ * and it ensures that each product data attribute is adequately validated and parsed into a standardized form. Special attention
+ * is given to handling nutritional values and storage conditions, which may involve complex data structures and require detailed parsing logic.</p>
+ *
+ * <p>This class provides concrete implementations for abstract methods defined in the {@link Adapter} class to:
+ * - Validate critical product properties to ensure data integrity.
+ * - Parse JSON data into a structured {@link NormalizedProduct} format.
+ * - Convert product-related information like units and nutritional values into more generic, system-wide comprehensible formats.</p>
+ *
+ * <p>By leveraging detailed JSON data and transforming it into standardized formats, the KosikAdapter facilitates robust data integration
+ * and helps maintain consistency and reliability in data handling and presentation across different e-commerce platforms.</p>
+ *
+ * @see Adapter
+ * @see NormalizedProduct
+ * @see KosikJsonProduct
+ */
 public class KosikAdapter extends Adapter<KosikJsonProduct> {
     public KosikAdapter() {
         super(KosikJsonProduct.class);
