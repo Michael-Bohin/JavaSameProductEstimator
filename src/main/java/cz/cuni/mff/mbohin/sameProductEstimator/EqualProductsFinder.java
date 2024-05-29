@@ -398,7 +398,7 @@ public class EqualProductsFinder {
         sb.append("Equal candidates of ").append(product.name).append(", to be found at url: ").append(product.url).append("\n");
 
         for (SimilarityCandidatePair candidate : sortedCandidates) {
-            sb.append(String.format("%.4f\t%s\t%s\n", candidate.similarity(), candidate.candidate(), candidate.candidate().url));
+            sb.append(String.format("%.4f\t%s\t%s\n", candidate.similarity(), candidate.candidate().name, candidate.candidate().url));
         }
 
         String uniqueFilePath = ensureUniqueFilePath(directoryPath, product.inferredData.getUniqueFileName());
@@ -413,7 +413,7 @@ public class EqualProductsFinder {
     public static String ensureUniqueFilePath(String directory, String filename) {
         File file = new File(directory, filename + ".txt");
         while (file.exists()) {
-            int randomNumber = new Random().nextInt();
+            int randomNumber = new Random().nextInt(Integer.MAX_VALUE) + 1;
             file = new File(directory, filenameWithoutExtension(filename) + "_" + randomNumber + ".txt");
         }
         return file.getPath();
