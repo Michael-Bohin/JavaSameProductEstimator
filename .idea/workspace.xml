@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Written javadoc comments for classes and methods.">
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Fixed missing javadoc comment for method void EqualProductsFinder.sortProbableEqualProductsAsync()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/config/RuntimeConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/config/RuntimeConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Adapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/RohlikAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/RohlikAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/TescoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/TescoAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NormalizedProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NormalizedProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/CandidateComparer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EshopSubstrings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EshopSubstrings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LCSFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LCSFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LevenshteinDistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LevenshteinDistance.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +38,9 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -111,7 +104,7 @@
       <workItem from="1716861788242" duration="10599000" />
       <workItem from="1716894699366" duration="24777000" />
       <workItem from="1716943895120" duration="6934000" />
-      <workItem from="1716975893687" duration="2421000" />
+      <workItem from="1716975893687" duration="7529000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -353,7 +346,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716950496654</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Written javadoc comments for classes and methods.">
+      <option name="closed" value="true" />
+      <created>1716978331831</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1716978331831</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -371,7 +372,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implementace kostry EshopProductFinder" />
     <MESSAGE value="Refaktorizace metody void sortProbableEqualProductsAsync()" />
     <MESSAGE value="Fix ekvivalent Directory.Create() metody v Jave" />
     <MESSAGE value="Dalsi implementace EqualProductsFinder pres listEqualCandidates az po prvni metodu sortujici kandidaty stejnych preoduktu sortCandidatesBySubstring(NormalizedProduct product, HashSet&lt;NormalizedProduct&gt; candidates, EshopSubstrings largerEshop)" />
@@ -396,6 +396,7 @@
     <MESSAGE value="Fix formatting of output sorted equality candidates" />
     <MESSAGE value="Clean up output directories in EqualProductsFinder constructor" />
     <MESSAGE value="Written javadoc comments for classes and methods." />
-    <option name="LAST_COMMIT_MESSAGE" value="Written javadoc comments for classes and methods." />
+    <MESSAGE value="Fixed missing javadoc comment for method void EqualProductsFinder.sortProbableEqualProductsAsync()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed missing javadoc comment for method void EqualProductsFinder.sortProbableEqualProductsAsync()" />
   </component>
 </project>

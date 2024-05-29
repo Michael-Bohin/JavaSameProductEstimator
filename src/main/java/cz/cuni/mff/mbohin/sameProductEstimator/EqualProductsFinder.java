@@ -115,14 +115,15 @@ public class EqualProductsFinder {
     }
 
 
-    /// <summary>
-    /// 1. Foreach eshop creates dictionaries substrings in names to list of references of products
-    /// 2. Foreach eshop pair
-    /// 3.		For eshop e with fewer products
-    /// 4.			For each product in eshop e
-    /// 5.				Creates & saves sorted list of most probable equal products
-    /// </summary>
-    @SuppressWarnings("unused")
+    /**
+     * Asynchronously processes and sorts probable equal products between multiple e-shops using multithreading.
+     * This method initializes dictionaries for each e-shop and utilizes a fixed thread pool to concurrently execute the sorting of probable
+     * equal products between Kosik, Rohlik, and Tesco e-shops. Each pair of e-shops is processed in a separate thread to enhance performance.
+     * The method ensures that all threads complete their execution before returning. It uses a thread pool of size three to match the three tasks,
+     * ensuring that each task can run concurrently without waiting for thread availability.
+     *
+     * @throws InterruptedException if the thread execution is interrupted while waiting for completion
+     */
     public void sortProbableEqualProductsAsync() throws InterruptedException {
         EshopSubstrings kosikDict = new EshopSubstrings(kosikProducts);
         EshopSubstrings rohlikDict = new EshopSubstrings(rohlikProducts);
