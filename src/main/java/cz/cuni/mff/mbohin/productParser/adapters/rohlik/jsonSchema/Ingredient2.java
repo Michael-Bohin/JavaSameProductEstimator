@@ -7,4 +7,6 @@ public class Ingredient2 {
     public String title;
     public String code;
     public String link;
+
+    public Value2 value;
 }

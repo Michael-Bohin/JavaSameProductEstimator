@@ -27,7 +27,7 @@ public class FileHandler {
         if (extractDir.exists()) {
             deleteDirectory(extractDir);
         }
-        assert extractDir.mkdirs();  // Ensure directory is created
+        assert extractDir.mkdirs();
 
         unzip(path, extractPath);
 
@@ -52,27 +52,41 @@ public class FileHandler {
 
     private static void unzip(String zipFilePath, String destDirectory) throws IOException {
         File destDir = new File(destDirectory);
-
-        assert destDir.exists() || destDir.mkdirs();
+        createDirectory(destDir);
 
         try (ZipFile zipFile = new ZipFile(zipFilePath)) {
             Enumeration<? extends ZipEntry> entries = zipFile.entries();
             while (entries.hasMoreElements()) {
                 ZipEntry entry = entries.nextElement();
-                File entryDestination = new File(destDir, entry.getName());
-                if (entry.isDirectory()) {
-                    assert entryDestination.mkdirs();
-                } else {
-                    assert entryDestination.getParentFile().mkdirs();
-                    try (InputStream in = zipFile.getInputStream(entry);
-                         FileOutputStream out = new FileOutputStream(entryDestination)) {
-                        byte[] buffer = new byte[1024];
-                        int length;
-                        while ((length = in.read(buffer)) >= 0) {
-                            out.write(buffer, 0, length);
-                        }
-                    }
-                }
+                processZipEntry(zipFile, entry, destDir);
+            }
+        }
+    }
+
+    private static void createDirectory(File directory) throws IOException {
+        if (!directory.exists() && !directory.mkdirs()) {
+            throw new IOException("Failed to create the directory: " + directory);
+        }
+    }
+
+    private static void processZipEntry(ZipFile zipFile, ZipEntry entry, File destDir) throws IOException {
+        File entryDestination = new File(destDir, entry.getName());
+        if (entry.isDirectory()) {
+            createDirectory(entryDestination);
+        } else {
+            File parentDir = entryDestination.getParentFile();
+            createDirectory(parentDir);
+            writeFile(zipFile, entry, entryDestination);
+        }
+    }
+
+    private static void writeFile(ZipFile zipFile, ZipEntry entry, File destination) throws IOException {
+        try (InputStream in = zipFile.getInputStream(entry);
+             FileOutputStream out = new FileOutputStream(destination)) {
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = in.read(buffer)) >= 0) {
+                out.write(buffer, 0, length);
             }
         }
     }
