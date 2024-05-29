@@ -49,6 +49,6 @@ public class EshopSubstrings {
 
         System.out.println("Sum of all product references " + counter);
         System.out.printf("Average references per one substring %.2f%n", (double) counter / substringsToProducts.size());
-        System.out.printf("Average number of ws split substrings per product %.2f%n", (double) substringsToProducts.size() / products.size());
+        System.out.printf("Average number of ws split substrings per product %.2f%n \n", (double) substringsToProducts.size() / products.size());
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 public class App 
 {
     @SuppressWarnings("unused")
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         long startTime = System.nanoTime();
 
         // Parsing Kosik products
@@ -28,11 +28,11 @@ public class App
         /**/RohlikAdapter ra = new RohlikAdapter();
         List<NormalizedProduct> rohlikProducts = ra.getNormalizedProducts(RuntimeConfig.zipExtractPath);/**/
 
-        /*/EqualProductsFinder epf = new EqualProductsFinder(kosikProducts, rohlikProducts, tescoProducts);
-        epf.sortProbableEqualProducts(); // Assuming synchronous for simplicity /**/
+        /**/EqualProductsFinder epf = new EqualProductsFinder(kosikProducts, rohlikProducts, tescoProducts);
+        epf.sortProbableEqualProductsAsync();  /**/
 
         long endTime = System.nanoTime();
-        long duration = (endTime - startTime) / 1_000_000; // Convert to milliseconds
+        long duration = (endTime - startTime) / 1_000_000;
 
         System.out.println("Program ran for " + duration / 1000 + " seconds and " + duration % 1000 + " ms.");
     }

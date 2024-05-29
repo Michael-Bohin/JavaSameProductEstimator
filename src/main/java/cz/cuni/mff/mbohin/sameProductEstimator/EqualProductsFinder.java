@@ -40,7 +40,7 @@ public class EqualProductsFinder {
         this.rohlikProducts = rohlikProducts;
         this.tescoProducts = tescoProducts;
 
-        System.out.println("Normalized products have been loaded to same product estimator.");
+        System.out.println("Normalized products have been loaded to same product estimator.\n");
 
         File directory = new File(loggingDirectory);
         boolean wasSuccessful = directory.mkdirs();
@@ -92,7 +92,6 @@ public class EqualProductsFinder {
     private static void generateMostProbableEqualProducts(EshopSubstrings eshopA, EshopSubstrings eshopB) {
         EshopSubstrings smallerEshop = eshopA.products.size() < eshopB.products.size() ? eshopA : eshopB;
         EshopSubstrings largerEshop = eshopA.products.size() >= eshopB.products.size() ? eshopA : eshopB;
-        createLoggingDirectory(smallerEshop, largerEshop);
 
         List<ProductHashSetCandidatesPair> equalCandidatesOfProducts = findEqualCandidatesOfProducts(smallerEshop, largerEshop);
 
@@ -106,25 +105,6 @@ public class EqualProductsFinder {
             /**/sortCandidatesByPrefix(product, candidates, largerEshop);/**/
             /**/sortCandidatesByLongestCommonSubsequence(product, candidates, largerEshop);/**/
             /**/sortCandidatesByEditDistance(product, candidates, largerEshop);/**/
-        }
-    }
-
-    private static void createLoggingDirectory(EshopSubstrings smallerEshop, EshopSubstrings largerEshop) {
-        if (smallerEshop.products.isEmpty() || largerEshop.products.isEmpty())
-            throw new IllegalArgumentException("Eshop product lists cannot be empty.");
-
-        String directoryRoot = "./out/" + smallerEshop.products.getFirst().eshop.toString() + "To" + largerEshop.products.getFirst().eshop.toString() + "ProbableEqualProducts/";
-
-        File directory = new File(directoryRoot);
-        if (!directory.exists()) {
-            boolean wasSuccessful = directory.mkdirs();
-            if (!wasSuccessful) {
-                System.out.println("Failed to create directory: " + directoryRoot);
-            } else {
-                System.out.println("Directory created successfully: " + directoryRoot);
-            }
-        } else {
-            System.out.println("Directory already exists: " + directoryRoot);
         }
     }
 
@@ -409,7 +389,10 @@ public class EqualProductsFinder {
         NormalizedProduct largerName = largerEshop.products.getFirst();
         String directoryPath = loggingDirectory + product.eshop + "_to_" + largerName.eshop + "/" + similarityType + "/";
         File directory = new File(directoryPath);
-        assert directory.mkdirs();
+        if (!directory.exists() && !directory.mkdirs()) {
+            LOGGER.log(Level.SEVERE, "Failed to create directory: " + directoryPath);
+            return;
+        }
 
         StringBuilder sb = new StringBuilder();
         sb.append("Equal candidates of ").append(product.name).append(", to be found at url: ").append(product.url).append("\n");
@@ -420,7 +403,7 @@ public class EqualProductsFinder {
 
         String uniqueFilePath = ensureUniqueFilePath(directoryPath, product.inferredData.getUniqueFileName());
 
-        try (FileWriter fw = new FileWriter((uniqueFilePath))) {
+        try (FileWriter fw = new FileWriter(uniqueFilePath)) {
             fw.write(sb.toString());
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, "An error occurred in logSortedCandidates", e);
