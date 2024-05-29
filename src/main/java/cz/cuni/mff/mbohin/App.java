@@ -1,6 +1,7 @@
 package cz.cuni.mff.mbohin;
 
-// import cz.cuni.mff.mbohin.productParser.adapters.rohlik.RohlikAdapter;
+import cz.cuni.mff.mbohin.config.RuntimeConfig;
+import cz.cuni.mff.mbohin.productParser.adapters.rohlik.RohlikAdapter;
 import cz.cuni.mff.mbohin.productParser.adapters.kosik.KosikAdapter;
 import cz.cuni.mff.mbohin.productParser.adapters.tesco.TescoAdapter;
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.NormalizedProduct;
@@ -19,13 +20,13 @@ public class App
         /**/KosikAdapter ka = new KosikAdapter();
         List<NormalizedProduct> kosikProducts = ka.getNormalizedProducts();/**/
 
-        // Parsing Rohlik products
-        /*/RohlikAdapter ra = new RohlikAdapter();
-        List<NormalizedProduct> rohlikProducts = ra.getNormalizedProducts(RuntimeConfig.zipExtractPath);/**/
-
         // Parsing Tesco products
         /**/TescoAdapter ta = new TescoAdapter();
         List<NormalizedProduct> tescoProducts = ta.getNormalizedProducts();/**/
+
+        // Parsing Rohlik products
+        /*/RohlikAdapter ra = new RohlikAdapter();
+        List<NormalizedProduct> rohlikProducts = ra.getNormalizedProducts(RuntimeConfig.zipExtractPath);/**/
 
         /*/EqualProductsFinder epf = new EqualProductsFinder(kosikProducts, rohlikProducts, tescoProducts);
         epf.sortProbableEqualProducts(); // Assuming synchronous for simplicity /**/
