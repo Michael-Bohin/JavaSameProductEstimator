@@ -26,5 +26,7 @@ public class RuntimeConfig {
     public static final String tescoProductDataRelativePath = "./src/main/resources/tescoProductData.json";
 
     public static final String zipExtractPath = "./out/decompressedFiles/";
+
+    public static final String substringsMappingDirectory = "./out/substringsMappingView/";
     public static final int limitProcessedProducts = 50;
 }
