@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Logovani EshopSubstrings.substringsToProducts do out/substringsMappingView/{eshop}/">
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Konfigurace mvn exec:java prikazu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/config/RuntimeConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/config/RuntimeConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EshopSubstrings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EshopSubstrings.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,6 +109,7 @@
       <workItem from="1717253331191" duration="4871000" />
       <workItem from="1719960378446" duration="1041000" />
       <workItem from="1719961536635" duration="1295000" />
+      <workItem from="1719962930522" duration="808000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -373,7 +375,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717257955394</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Konfigurace mvn exec:java prikazu">
+      <option name="closed" value="true" />
+      <created>1719963065077</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1719963065077</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +401,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix ekvivalent Directory.Create() metody v Jave" />
     <MESSAGE value="Dalsi implementace EqualProductsFinder pres listEqualCandidates az po prvni metodu sortujici kandidaty stejnych preoduktu sortCandidatesBySubstring(NormalizedProduct product, HashSet&lt;NormalizedProduct&gt; candidates, EshopSubstrings largerEshop)" />
     <MESSAGE value="Implementace sortCandidatesByPrefix" />
     <MESSAGE value="Implementace metod sortujici kandidaty na stejny product sortCandidatesByLongestCommonSubsequence a sortCandidatesByEditDistance" />
@@ -416,6 +425,7 @@
     <MESSAGE value="Written javadoc comments for classes and methods." />
     <MESSAGE value="Fixed missing javadoc comment for method void EqualProductsFinder.sortProbableEqualProductsAsync()" />
     <MESSAGE value="Logovani EshopSubstrings.substringsToProducts do out/substringsMappingView/{eshop}/" />
-    <option name="LAST_COMMIT_MESSAGE" value="Logovani EshopSubstrings.substringsToProducts do out/substringsMappingView/{eshop}/" />
+    <MESSAGE value="Konfigurace mvn exec:java prikazu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Konfigurace mvn exec:java prikazu" />
   </component>
 </project>

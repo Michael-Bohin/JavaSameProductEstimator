@@ -14,7 +14,6 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  * Manages the mapping of substrings extracted from product names to their corresponding list of {@link NormalizedProduct} objects.
  * This class is designed to facilitate efficient searching and matching of products based on name parts within an e-commerce platform,
@@ -23,12 +22,11 @@ import java.util.logging.Logger;
  * <p>Upon initialization, this class constructs a dictionary where each key is a substring of a product name, and the value is a list of products
  * that contain that substring. Only substrings longer than two characters are considered to avoid overly common and less distinctive name parts.</p>
  *
- * <p>Utility functions within the class help populate and manage this dictionary by:
+ * <p>Utility functions within the class help populate and manage this dictionary by:</p>
  * <ul>
  * <li>Adding products to the dictionary by extracting and processing name substrings.</li>
  * <li>Logging statistics about the dictionary's size and the distribution of references to products across different substrings.</li>
  * </ul>
- * </p>
  *
  * <p>The class also provides insights into the efficiency and distribution of the substring indexing through console logs, helping
  * in understanding the spread and commonality of product names within the stored data.</p>
