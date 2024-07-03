@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Pridani overview.html vcetne nakonfigruovani javadoc v pom.xml, aby overview.html bral v potaz">
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Javadoc comment for class EqualProductsFinder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" afterDir="false" />
     </list>
@@ -111,7 +111,7 @@
       <workItem from="1719960378446" duration="1041000" />
       <workItem from="1719961536635" duration="1295000" />
       <workItem from="1719962930522" duration="3554000" />
-      <workItem from="1720036472931" duration="633000" />
+      <workItem from="1720036472931" duration="1728000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -409,7 +409,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719966477414</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Javadoc comment for class EqualProductsFinder">
+      <option name="closed" value="true" />
+      <created>1720037188596</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1720037188596</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -427,7 +435,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Vytvoreni unikatniho fileName produktu v InfferedData constructoru" />
     <MESSAGE value="Fix calculatePrefixSimilarity equation" />
     <MESSAGE value="implementace metod logSortedCandidates, ensureUniqueFilePath, filenameWithoutExtension" />
     <MESSAGE value="limit processed products to increase speed of dev time runs" />
@@ -452,6 +459,7 @@
     <MESSAGE value="Konfigurace mvn javadoc:javadoc" />
     <MESSAGE value="Javadoc ztiseni warningu ohledne missing comments. Pro externi jsonSchemas o bazilionu externich trid jsou kontraproduktivni" />
     <MESSAGE value="Pridani overview.html vcetne nakonfigruovani javadoc v pom.xml, aby overview.html bral v potaz" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pridani overview.html vcetne nakonfigruovani javadoc v pom.xml, aby overview.html bral v potaz" />
+    <MESSAGE value="Javadoc comment for class EqualProductsFinder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Javadoc comment for class EqualProductsFinder" />
   </component>
 </project>

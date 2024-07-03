@@ -65,6 +65,16 @@ public class EqualProductsFinder {
 
     private static final Logger LOGGER = Logger.getLogger("EqualProductsFinder logger");
 
+    /**
+     * Constructs an EqualProductsFinder instance with lists of normalized products from Kosik, Rohlik, and Tesco e-shops.
+     * This constructor ensures that all products in each list belong to their respective e-shops and prepares the output
+     * directories for logging the results of the similarity comparisons.
+     *
+     * @param kosikProducts the list of normalized products from Kosik e-shop
+     * @param rohlikProducts the list of normalized products from Rohlik e-shop
+     * @param tescoProducts the list of normalized products from Tesco e-shop
+     * @throws IllegalArgumentException if any product in the provided lists does not belong to its specified e-shop
+     */
     public EqualProductsFinder(List<NormalizedProduct> kosikProducts, List<NormalizedProduct> rohlikProducts, List<NormalizedProduct> tescoProducts) {
         assertAllProductsAreFromSameEshop(kosikProducts, Eshop.KOSIK);
         assertAllProductsAreFromSameEshop(rohlikProducts, Eshop.ROHLIK);
@@ -78,6 +88,13 @@ public class EqualProductsFinder {
         prepareStateOfOutputDirectories(kosikProducts, rohlikProducts, tescoProducts);
     }
 
+    /**
+     * Ensures that all products in the specified list belong to the given e-shop.
+     *
+     * @param products the list of normalized products to check
+     * @param eshop the expected e-shop for all products in the list
+     * @throws IllegalArgumentException if any product in the list does not belong to the specified e-shop
+     */
     private void assertAllProductsAreFromSameEshop(List<NormalizedProduct> products, Eshop eshop) {
         for (NormalizedProduct product : products) {
             if (product.eshop != eshop)
@@ -85,6 +102,14 @@ public class EqualProductsFinder {
         }
     }
 
+    /**
+     * Prepares the state of output directories by creating necessary directories and cleaning up old log files.
+     * It sets up directories for each similarity type and e-shop pair to log the results of similarity comparisons.
+     *
+     * @param kosikProducts the list of normalized products from Kosik e-shop
+     * @param rohlikProducts the list of normalized products from Rohlik e-shop
+     * @param tescoProducts the list of normalized products from Tesco e-shop
+     */
     private void prepareStateOfOutputDirectories(List<NormalizedProduct> kosikProducts, List<NormalizedProduct> rohlikProducts, List<NormalizedProduct> tescoProducts) {
         File directory = new File(loggingDirectory);
         boolean wasSuccessful = directory.mkdirs();
@@ -108,7 +133,18 @@ public class EqualProductsFinder {
         }
     }
 
-    public static List<String> formEshopPairsBasedOnSize(List<NormalizedProduct> kosikProducts, List<NormalizedProduct> rohlikProducts, List<NormalizedProduct> tescoProducts) {
+    /**
+     * Forms a list of e-shop pairs based on the size of their product lists.
+     * This method compares the sizes of the product lists from Kosik, Rohlik, and Tesco e-shops,
+     * and generates a list of strings representing the pairs of e-shops to be compared.
+     * Each pair is formatted as "smallerEshop_to_largerEshop" based on the size of their product lists.
+     *
+     * @param kosikProducts the list of normalized products from Kosik e-shop
+     * @param rohlikProducts the list of normalized products from Rohlik e-shop
+     * @param tescoProducts the list of normalized products from Tesco e-shop
+     * @return a list of strings representing pairs of e-shops to be compared, formatted as "smallerEshop_to_largerEshop"
+     */
+    private static List<String> formEshopPairsBasedOnSize(List<NormalizedProduct> kosikProducts, List<NormalizedProduct> rohlikProducts, List<NormalizedProduct> tescoProducts) {
         List<String> results = new ArrayList<>();
         results.add(compareTwoProductLists(kosikProducts, rohlikProducts));
         results.add(compareTwoProductLists(kosikProducts, tescoProducts));
@@ -555,4 +591,3 @@ public class EqualProductsFinder {
         return (dotIndex == -1) ? filename : filename.substring(0, dotIndex);
     }
 }
-
