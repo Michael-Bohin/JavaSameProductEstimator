@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Javadoc ztiseni warningu ohledne missing comments. Pro externi jsonSchemas o bazilionu externich trid jsou kontraproduktivni">
-      <change afterPath="$PROJECT_DIR$/src/main/javadoc/overview.html" afterDir="false" />
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Pridani overview.html vcetne nakonfigruovani javadoc v pom.xml, aby overview.html bral v potaz">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,30 +53,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mbohi/IdeaProjects/JavaSameProductEstimator/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mbohi/IdeaProjects/JavaSameProductEstimator/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mbohi\IdeaProjects\JavaSameProductEstimator\src\main\resources" />
@@ -110,7 +110,8 @@
       <workItem from="1717253331191" duration="4871000" />
       <workItem from="1719960378446" duration="1041000" />
       <workItem from="1719961536635" duration="1295000" />
-      <workItem from="1719962930522" duration="3314000" />
+      <workItem from="1719962930522" duration="3554000" />
+      <workItem from="1720036472931" duration="633000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -400,7 +401,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719965524778</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Pridani overview.html vcetne nakonfigruovani javadoc v pom.xml, aby overview.html bral v potaz">
+      <option name="closed" value="true" />
+      <created>1719966477414</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1719966477414</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,7 +427,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implementace metod sortujici kandidaty na stejny product sortCandidatesByLongestCommonSubsequence a sortCandidatesByEditDistance" />
     <MESSAGE value="Vytvoreni unikatniho fileName produktu v InfferedData constructoru" />
     <MESSAGE value="Fix calculatePrefixSimilarity equation" />
     <MESSAGE value="implementace metod logSortedCandidates, ensureUniqueFilePath, filenameWithoutExtension" />
@@ -443,6 +451,7 @@
     <MESSAGE value="Konfigurace mvn exec:java prikazu" />
     <MESSAGE value="Konfigurace mvn javadoc:javadoc" />
     <MESSAGE value="Javadoc ztiseni warningu ohledne missing comments. Pro externi jsonSchemas o bazilionu externich trid jsou kontraproduktivni" />
-    <option name="LAST_COMMIT_MESSAGE" value="Javadoc ztiseni warningu ohledne missing comments. Pro externi jsonSchemas o bazilionu externich trid jsou kontraproduktivni" />
+    <MESSAGE value="Pridani overview.html vcetne nakonfigruovani javadoc v pom.xml, aby overview.html bral v potaz" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pridani overview.html vcetne nakonfigruovani javadoc v pom.xml, aby overview.html bral v potaz" />
   </component>
 </project>

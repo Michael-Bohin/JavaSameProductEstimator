@@ -24,6 +24,38 @@ import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 
+/**
+ * The EqualProductsFinder class is responsible for identifying and sorting probable equal products
+ * between multiple e-shops (Kosik, Rohlik, and Tesco). This class uses various similarity measures
+ * such as substring similarity, prefix similarity, longest common subsequence, and length-adjusted edit distance
+ * to compare and match products across these e-shops.
+ * It initializes by asserting that the provided lists of normalized products belong to their e-shops and
+ * prepares the output directories for logging. The core functionalities are:
+ * - Asynchronously processing and sorting probable equal products between the e-shops using multithreading.
+ * - Comparing products from smaller e-shops against larger e-shops to optimize the matching process.
+ * - Logging the results of the similarity comparisons for further analysis.
+ * The class also provides methods to clean up old log files, calculate various similarity metrics,
+ * and ensure unique file paths for logging results.
+ * Example usage:
+ * <pre>
+ * {@code
+ * List<NormalizedProduct> kosikProducts = ...;
+ * List<NormalizedProduct> rohlikProducts = ...;
+ * List<NormalizedProduct> tescoProducts = ...;
+ * EqualProductsFinder finder = new EqualProductsFinder(kosikProducts, rohlikProducts, tescoProducts);
+ * finder.sortProbableEqualProductsAsync();
+ * }
+ * </pre>
+ *
+ * Note: The class assumes that product names are normalized using specific adapters of eshops.
+ * @see NormalizedProduct
+ * @see Eshop
+ * @see EshopSubstrings
+ * @see ProductHashSetCandidatesPair
+ * @see SimilarityCandidatePair
+ * @see LCSFinder
+ * @see LevenshteinDistance
+ */
 @SuppressWarnings("unused")
 public class EqualProductsFinder {
     private final List<NormalizedProduct> kosikProducts;
