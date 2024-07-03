@@ -5,17 +5,13 @@ import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.Eshop;
 import cz.cuni.mff.mbohin.config.RuntimeConfig;
 import cz.cuni.mff.mbohin.sameProductEstimator.*;
 
-import java.io.File;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 import java.util.HashSet;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * The EqualProductsFinder class is responsible for identifying and sorting probable equal products
@@ -55,9 +51,6 @@ public class EqualProductsFinder {
     private final List<NormalizedProduct> rohlikProducts;
     private final List<NormalizedProduct> tescoProducts;
     private static final String loggingDirectory = "./out/equalProductsFinder/";
-
-    private static final Logger LOGGER = Logger.getLogger("EqualProductsFinder logger");
-
     /**
      * Constructs an EqualProductsFinder instance with lists of normalized products from Kosik, Rohlik, and Tesco e-shops.
      * This constructor ensures that all products in each list belong to their respective e-shops and prepares the output
@@ -72,13 +65,13 @@ public class EqualProductsFinder {
         assertAllProductsAreFromSameEshop(kosikProducts, Eshop.KOSIK);
         assertAllProductsAreFromSameEshop(rohlikProducts, Eshop.ROHLIK);
         assertAllProductsAreFromSameEshop(tescoProducts, Eshop.TESCO);
+
         this.kosikProducts = kosikProducts;
         this.rohlikProducts = rohlikProducts;
         this.tescoProducts = tescoProducts;
-
         System.out.println("Normalized products have been loaded to same product estimator.\n");
 
-        prepareStateOfOutputDirectories(kosikProducts, rohlikProducts, tescoProducts);
+        LoggingManager.prepareStateOfOutputDirectories(kosikProducts, rohlikProducts, tescoProducts);
     }
 
     /**
@@ -92,37 +85,6 @@ public class EqualProductsFinder {
         for (NormalizedProduct product : products) {
             if (product.eshop != eshop)
                 throw new IllegalArgumentException("Product is expected to be normalized from eshop " + eshop + ", but instead it is from " + product.eshop + ".");
-        }
-    }
-
-    /**
-     * Prepares the state of output directories by creating necessary directories and cleaning up old log files.
-     * It sets up directories for each similarity type and e-shop pair to log the results of similarity comparisons.
-     *
-     * @param kosikProducts the list of normalized products from Kosik e-shop
-     * @param rohlikProducts the list of normalized products from Rohlik e-shop
-     * @param tescoProducts the list of normalized products from Tesco e-shop
-     */
-    private void prepareStateOfOutputDirectories(List<NormalizedProduct> kosikProducts, List<NormalizedProduct> rohlikProducts, List<NormalizedProduct> tescoProducts) {
-        File directory = new File(loggingDirectory);
-        boolean wasSuccessful = directory.mkdirs();
-        File directory2 = new File(loggingDirectory);
-        assert  directory2.mkdirs();
-
-        List<String> similarityTypes = Arrays.asList(
-            "substringSimilarity",
-            "prefixSimilarity",
-            "LongestCommonSubsequenceSimilarity",
-            "LengthAdjustedEditationDistance"
-        );
-
-        List<String> eshopPairs = ProductPairingManager.formEshopPairsBasedOnSize(kosikProducts, rohlikProducts, tescoProducts);
-
-        for(var similarityType : similarityTypes) {
-            for (var eshopPair : eshopPairs) {
-                String directoryForCleanUp = loggingDirectory + eshopPair + "/" + similarityType + "/";
-                LoggingManager.deleteTextFiles(directoryForCleanUp);
-            }
         }
     }
 
@@ -168,32 +130,29 @@ public class EqualProductsFinder {
 
         List<ProductHashSetCandidatesPair> equalCandidatesOfProducts = ProductPairingManager.findEqualCandidatesOfProducts(smallerEshop, largerEshop);
 
+        SimilarityCalculator substringCalculator = new SubstringSimilarityCalculator();
+        SimilarityCalculator prefixCalculator = new PrefixSimilarityCalculator();
+        SimilarityCalculator lcsCalculator = new LongestCommonSubsequenceCalculator();
+        SimilarityCalculator editDistanceCalculator = new LengthAdjustedEditDistanceCalculator();
+
         int min = Math.min(RuntimeConfig.limitProcessedProducts, equalCandidatesOfProducts.size());
         for (int i = 0; i < min; i++) {
             ProductHashSetCandidatesPair productAndCandidates = equalCandidatesOfProducts.get(i);
             NormalizedProduct product = productAndCandidates.product();
             HashSet<NormalizedProduct> candidates = productAndCandidates.candidates();
 
-            /**/sortCandidatesBySubstring(product, candidates, largerEshop);/**/
-            /**/sortCandidatesByPrefix(product, candidates, largerEshop);/**/
-            /**/sortCandidatesByLongestCommonSubsequence(product, candidates, largerEshop);/**/
-            /**/sortCandidatesByEditDistance(product, candidates, largerEshop);/**/
-        }
-    }
+            List<SimilarityCandidatePair> sortedCandidatesSubstring = sortCandidates(product, candidates, substringCalculator::calculate);
+            LoggingManager.logSortedCandidates("substringSimilarity", product, largerEshop, sortedCandidatesSubstring);
 
-    /**
-     * Calculates the similarity between a product from a smaller e-shop and multiple candidate products from a larger e-shop based on the ratio of equal substrings.
-     * The similarity by equal substrings ratio is defined as the count of equal substrings divided by the minimum number of substrings obtained by splitting
-     * the names of both the product and the candidate. This method sorts the candidates from the larger e-shop based on the calculated substring similarity.
-     *
-     * @param product the product from the smaller e-shop
-     * @param candidates a set of candidate products from the larger e-shop
-     * @param largerEshop the larger e-shop class providing additional context
-     */
-    private static void sortCandidatesBySubstring(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
-        SimilarityCalculator substringCalculator = new SubstringSimilarityCalculator();
-        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, substringCalculator::calculate);
-        LoggingManager.logSortedCandidates("substringSimilarity", product, largerEshop, sortedCandidates);
+            List<SimilarityCandidatePair> sortedCandidatesPrefix = sortCandidates(product, candidates, prefixCalculator::calculate);
+            LoggingManager.logSortedCandidates("prefixSimilarity", product, largerEshop, sortedCandidatesPrefix);
+
+            List<SimilarityCandidatePair> sortedCandidatesLCS = sortCandidates(product, candidates, lcsCalculator::calculate);
+            LoggingManager.logSortedCandidates("LongestCommonSubsequenceSimilarity", product, largerEshop, sortedCandidatesLCS);
+
+            List<SimilarityCandidatePair> sortedCandidatesDistance = sortCandidates(product, candidates, editDistanceCalculator::calculate);
+            LoggingManager.logSortedCandidates("LengthAdjustedEditationDistance", product, largerEshop, sortedCandidatesDistance);
+        }
     }
 
     /**
@@ -214,53 +173,5 @@ public class EqualProductsFinder {
         }
         sortedCandidates.sort((o1, o2) -> Double.compare(o2.similarity(), o1.similarity()));
         return sortedCandidates;
-    }
-
-    /**
-     * Sorts a set of candidate products from a larger e-shop based on their common prefix similarity with a given product from a smaller e-shop.
-     * The similarity is calculated by first normalizing the product names (removing whitespaces and converting to lowercase), then determining
-     * the length of the common prefix between each pair of product names, and finally dividing this length by the
-     * shorter of the two name lengths. This method returns a sorted list of candidates based on this common prefix similarity.
-     *
-     * @param product the product from the smaller e-shop
-     * @param candidates a set of candidate products from the larger e-shop
-     * @param largerEshop the e-shop containing the candidates
-     */
-    public static void sortCandidatesByPrefix(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
-        SimilarityCalculator prefixCalculator = new PrefixSimilarityCalculator();
-        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, prefixCalculator::calculate);
-        LoggingManager.logSortedCandidates("prefixSimilarity", product, largerEshop, sortedCandidates);
-    }
-
-    /**
-     * Sorts a list of candidate products from a larger e-shop based on their common prefix similarity with a given product from a smaller e-shop.
-     * The similarity is calculated by first normalizing the product names (removing whitespaces and converting to lowercase),
-     * then determining the length of the common prefix between each pair of product names, and finally dividing this length by the
-     * shorter of the two name lengths. The method returns a sorted list of candidates based on this common prefix similarity.
-     *
-     * @param product the product from the smaller e-shop
-     * @param candidates a set of candidate products from the larger e-shop
-     * @param largerEshop the e-shop containing the candidates
-     */
-    private static void sortCandidatesByLongestCommonSubsequence(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
-        SimilarityCalculator lcsCalculator = new LongestCommonSubsequenceCalculator();
-        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, lcsCalculator::calculate);
-        LoggingManager.logSortedCandidates("LongestCommonSubsequenceSimilarity", product, largerEshop, sortedCandidates);
-    }
-
-    /**
-     * Sorts a list of candidate products from a larger e-shop based on their length-adjusted edit distance similarity with a given product from a smaller e-shop.
-     * The similarity is calculated by normalizing the product names (removing whitespaces and converting to lowercase), then computing the edit distance,
-     * and adjusting it by subtracting the absolute difference in length between the two names. This method returns a sorted list of candidates based on this
-     * adjusted edit distance.
-     *
-     * @param product the product from the smaller e-shop
-     * @param candidates a set of candidate products from the larger e-shop
-     * @param largerEshop the e-shop containing the candidates
-     */
-    private static void sortCandidatesByEditDistance(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
-        SimilarityCalculator editDistanceCalculator = new LengthAdjustedEditDistanceCalculator();
-        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, editDistanceCalculator::calculate);
-        LoggingManager.logSortedCandidates("LengthAdjustedEditationDistance", product, largerEshop, sortedCandidates);
     }
 }

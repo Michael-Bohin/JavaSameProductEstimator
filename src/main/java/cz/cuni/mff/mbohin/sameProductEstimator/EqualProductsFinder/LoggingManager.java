@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -32,14 +33,44 @@ public class LoggingManager {
     private static final String loggingDirectory = "./out/equalProductsFinder/";
 
     /**
+     * Prepares the state of output directories by creating necessary directories and cleaning up old log files.
+     * It sets up directories for each similarity type and e-shop pair to log the results of similarity comparisons.
+     *
+     * @param kosikProducts the list of normalized products from Kosik e-shop
+     * @param rohlikProducts the list of normalized products from Rohlik e-shop
+     * @param tescoProducts the list of normalized products from Tesco e-shop
+     */
+    public static void prepareStateOfOutputDirectories(List<NormalizedProduct> kosikProducts, List<NormalizedProduct> rohlikProducts, List<NormalizedProduct> tescoProducts) {
+        File directory = new File(loggingDirectory);
+        assert directory.mkdirs();
+
+        List<String> similarityTypes = Arrays.asList(
+                "substringSimilarity",
+                "prefixSimilarity",
+                "LongestCommonSubsequenceSimilarity",
+                "LengthAdjustedEditationDistance"
+        );
+
+        List<String> eshopPairs = ProductPairingManager.formEshopPairsBasedOnSize(kosikProducts, rohlikProducts, tescoProducts);
+
+        for(var similarityType : similarityTypes) {
+            for (var eshopPair : eshopPairs) {
+                String directoryForCleanUp = loggingDirectory + eshopPair + "/" + similarityType + "/";
+                deleteTextFiles(directoryForCleanUp);
+            }
+        }
+    }
+
+    /**
      * Asserts that the specified string parameter is indeed a directory, and deletes all files with a ".txt" extension.
      * It checks if the directory exists and is a directory, then finds and deletes all ".txt" files within.
      * If the path is not valid or not a directory, it prints an error message.
      *
      * @param directoryPath the path to the directory where text files will be deleted
      */
-    public static void deleteTextFiles(String directoryPath) {
+    private static void deleteTextFiles(String directoryPath) {
         File directory = new File(directoryPath);
+        assert directory.mkdirs();
 
         if (directory.exists() && directory.isDirectory()) {
             File[] files = directory.listFiles((dir, name) -> name.endsWith(".txt"));
