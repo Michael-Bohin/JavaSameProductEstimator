@@ -39,6 +39,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.4.1</version>
           <configuration>
+            <overview>${basedir}/src/main/javadoc/overview.html</overview>
             <additionalJOptions>
               <arg>-quiet</arg>
               <arg>-Xdoclint:all,-missing</arg>
