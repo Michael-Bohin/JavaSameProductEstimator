@@ -1,6 +1,6 @@
 package cz.cuni.mff.mbohin.productParser.adapters.rohlik.jsonSchema;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("all")
 public class ShelfLife {
     public String type;
     public Integer average;

@@ -3,7 +3,7 @@ package cz.cuni.mff.mbohin.productParser.adapters.kosik.jsonSchema;
 
 import java.math.BigDecimal;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("all")
 public class KosikProduct {
     public int id;
     public String name;

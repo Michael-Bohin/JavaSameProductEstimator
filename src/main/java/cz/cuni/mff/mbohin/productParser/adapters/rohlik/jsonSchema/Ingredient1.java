@@ -1,6 +1,6 @@
 package cz.cuni.mff.mbohin.productParser.adapters.rohlik.jsonSchema;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("all")
 public class Ingredient1 {
     public String type;
     public Ingredient2[] ingredients;

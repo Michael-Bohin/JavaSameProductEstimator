@@ -1,6 +1,6 @@
 package cz.cuni.mff.mbohin.productParser.adapters.tesco.jsonSchema;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("all")
 public class TescoPromotion {
     public String promotionId;
     public String promotionType;

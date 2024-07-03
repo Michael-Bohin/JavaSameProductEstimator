@@ -2,7 +2,7 @@ package cz.cuni.mff.mbohin.productParser.adapters.tesco.jsonSchema;
 
 import java.math.BigDecimal;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("all")
 public class Product {
     public String typename;
     public Object context;

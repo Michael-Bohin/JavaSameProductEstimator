@@ -1,5 +1,6 @@
 package cz.cuni.mff.mbohin.productParser.adapters.tesco.jsonSchema;
 
+@SuppressWarnings("all")
 public class TescoJsonProduct {
     public TescoPromotion[] promotions;
     public boolean isSponsoredProduct;
