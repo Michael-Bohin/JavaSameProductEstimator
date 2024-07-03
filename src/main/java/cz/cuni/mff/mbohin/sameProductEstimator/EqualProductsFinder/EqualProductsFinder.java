@@ -273,7 +273,8 @@ public class EqualProductsFinder {
      * @param largerEshop the larger e-shop class providing additional context
      */
     private static void sortCandidatesBySubstring(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
-        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculateSubstringSimilarity);
+        SimilarityCalculator substringCalculator = new SubstringSimilarityCalculator();
+        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, substringCalculator::calculate);
         LoggingManager.logSortedCandidates("substringSimilarity", product, largerEshop, sortedCandidates);
     }
 
@@ -298,40 +299,6 @@ public class EqualProductsFinder {
     }
 
     /**
-     * Calculates the similarity between two products based on the ratio of shared substrings.
-     * The similarity is defined as the count of equal substrings that both products have, divided by the
-     * smaller total number of substrings from either product. This method throws an exception if no common
-     * substrings are found, indicating a potential misuse or critical error in code architecture.
-     *
-     * @param product the first product for similarity comparison
-     * @param candidate the second product for similarity comparison
-     * @return the calculated similarity ratio as a double
-     * @throws IllegalArgumentException if there are no common substrings between the two products
-     */
-    private static double calculateSubstringSimilarity(NormalizedProduct product, NormalizedProduct candidate) {
-        HashSet<String> productSubstrings = getSubstringsSet(product);
-        HashSet<String> candidateSubstrings = getSubstringsSet(candidate);
-
-        int sameSubstringsCount = 0;
-        for (String substring : productSubstrings) {
-            if (candidateSubstrings.contains(substring)) {
-                sameSubstringsCount++;
-            }
-        }
-
-        if (sameSubstringsCount == 0) {
-            throw new IllegalArgumentException("In this part of the code, only products with at least one same substring may be called. Critical error in code architecture detected!");
-        }
-
-        int minSubstringCount = Math.min(productSubstrings.size(), candidateSubstrings.size());
-        return (double) sameSubstringsCount / minSubstringCount;
-    }
-
-    private static HashSet<String> getSubstringsSet(NormalizedProduct product) {
-        return new HashSet<>(product.inferredData.getLowerCaseNameParts());
-    }
-
-    /**
      * Sorts a set of candidate products from a larger e-shop based on their common prefix similarity with a given product from a smaller e-shop.
      * The similarity is calculated by first normalizing the product names (removing whitespaces and converting to lowercase), then determining
      * the length of the common prefix between each pair of product names, and finally dividing this length by the
@@ -342,56 +309,9 @@ public class EqualProductsFinder {
      * @param largerEshop the e-shop containing the candidates
      */
     public static void sortCandidatesByPrefix(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
-        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculatePrefixSimilarity);
+        SimilarityCalculator prefixCalculator = new PrefixSimilarityCalculator();
+        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, prefixCalculator::calculate);
         LoggingManager.logSortedCandidates("prefixSimilarity", product, largerEshop, sortedCandidates);
-    }
-
-    /**
-     * Calculates the similarity between two products based on the length of their common prefix. The product names are first normalized
-     * by converting them to lowercase. The similarity ratio is determined by the length of the common prefix divided by the minimum length
-     * of the two product names. This method provides a measure of how similar two product names are, based purely on the initial characters they share.
-     *
-     * @param product the first product for prefix similarity comparison
-     * @param candidate the second product for prefix similarity comparison
-     * @return the similarity ratio as a double, representing the proportion of the common prefix length to the shorter product name length
-     */
-    public static double calculatePrefixSimilarity(NormalizedProduct product, NormalizedProduct candidate) {
-        String parsedProductName = product.name.toLowerCase();
-        String parsedCandidateName = candidate.name.toLowerCase();
-
-        int commonPrefixLength = commonPrefixLength(parsedProductName, parsedCandidateName);
-
-        return (double) commonPrefixLength / Math.min(parsedProductName.length(), parsedCandidateName.length());
-    }
-
-    private static String removeWS(String s) {
-        return s.replaceAll("\\s+", "");
-    }
-
-    /**
-     * Computes the length of the common prefix between two strings. This method iteratively compares characters
-     * from the start of both strings and counts how many characters are identical until it encounters a mismatch.
-     * It requires that neither string be null nor empty, throwing an IllegalArgumentException if this precondition is not met.
-     *
-     * @param parsedProductName the normalized name of the first product
-     * @param parsedCandidateName the normalized name of the second product
-     * @return the length of the common prefix shared by the two product names
-     * @throws IllegalArgumentException if either input string is null or empty, indicating improper prior processing
-     */
-    private static int commonPrefixLength(String parsedProductName, String parsedCandidateName) {
-        if (parsedProductName == null || parsedCandidateName == null || parsedProductName.isEmpty() || parsedCandidateName.isEmpty())
-            throw new IllegalArgumentException("Critical error in code architecture detected. Parsed product names at this point may not be null or empty.");
-
-        int prefixLength = 0;
-        for (int i = 0; i < Math.min(parsedProductName.length(), parsedCandidateName.length()); i++) {
-            if (parsedProductName.charAt(i) == parsedCandidateName.charAt(i)) {
-                prefixLength++;
-            } else {
-                break;
-            }
-        }
-
-        return prefixLength;
     }
 
     /**
@@ -405,28 +325,9 @@ public class EqualProductsFinder {
      * @param largerEshop the e-shop containing the candidates
      */
     private static void sortCandidatesByLongestCommonSubsequence(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
-        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculateLCS);
+        SimilarityCalculator lcsCalculator = new LongestCommonSubsequenceCalculator();
+        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, lcsCalculator::calculate);
         LoggingManager.logSortedCandidates("LongestCommonSubsequenceSimilarity", product, largerEshop, sortedCandidates);
-    }
-
-    /**
-     * Calculates the similarity between two products based on the longest common subsequence (LCS) of their names.
-     * The names are first preprocessed by removing all whitespaces and converting them to lowercase. The LCS is computed,
-     * and the similarity ratio is determined by dividing the LCS length by the minimum length of the two processed names.
-     * This method provides a normalized measure of similarity that accounts for the longest sequence of characters that appear
-     * in both names in the same order.
-     *
-     * @param product the first product for LCS similarity comparison
-     * @param candidate the second product for LCS similarity comparison
-     * @return the similarity ratio as a double, representing the length of LCS divided by the shortest name length
-     */
-    private static double calculateLCS(NormalizedProduct product, NormalizedProduct candidate) {
-        String parsedProductName = removeWS(product.name).toLowerCase();
-        String parsedCandidateName = removeWS(candidate.name).toLowerCase();
-
-        int LCS = LCSFinder.longestCommonSubsequence(parsedProductName, parsedCandidateName);
-
-        return (double)LCS / Math.min(parsedProductName.length(), parsedCandidateName.length());
     }
 
     /**
@@ -440,27 +341,8 @@ public class EqualProductsFinder {
      * @param largerEshop the e-shop containing the candidates
      */
     private static void sortCandidatesByEditDistance(NormalizedProduct product, HashSet<NormalizedProduct> candidates, EshopSubstrings largerEshop) {
-        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, EqualProductsFinder::calculateLengthAdjustedEditDistance);
+        SimilarityCalculator editDistanceCalculator = new LengthAdjustedEditDistanceCalculator();
+        List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, editDistanceCalculator::calculate);
         LoggingManager.logSortedCandidates("LengthAdjustedEditationDistance", product, largerEshop, sortedCandidates);
-    }
-
-    /**
-     * Calculates the length-adjusted edit distance similarity between two products. The product names are first normalized by removing
-     * whitespaces and converting to lowercase. The edit distance is then adjusted by subtracting the absolute difference in name lengths.
-     * This adjusted value is normalized by dividing by the minimum length of the two names, yielding a similarity score that accounts for
-     * name length discrepancies.
-     *
-     * @param product the first product for similarity comparison
-     * @param candidate the second product for similarity comparison
-     * @return the normalized length-adjusted edit distance as a double, providing a similarity measure between the two products
-     */
-    private static double calculateLengthAdjustedEditDistance(NormalizedProduct product, NormalizedProduct candidate) {
-        String parsedProductName = removeWS(product.name).toLowerCase();
-        String parsedCandidateName = removeWS(candidate.name).toLowerCase();
-
-        int editDistance = LevenshteinDistance.lengthAdjustedEditDistance(parsedProductName, parsedCandidateName);
-        int minLength = Math.min(parsedProductName.length(), parsedCandidateName.length());
-
-        return (double) (minLength - editDistance) / minLength;
     }
 }
