@@ -1,4 +1,4 @@
-package cz.cuni.mff.mbohin.sameProductEstimator;
+package cz.cuni.mff.mbohin.sameProductEstimator.EqualProductsFinder;
 
 import java.util.Map;
 import java.util.TreeMap;

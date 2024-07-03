@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Javadoc comment for constructor and its helper methods of class EqualProductsFinder">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LoggingManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/Statistics.java" afterDir="false" />
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Refactor EqualProductsFinder, delegate some parts of its functionalities to LoggingManager and Statistics class.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/EqualProductsFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LoggingManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/LoggingManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/ProductHashSetCandidatesPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/ProductHashSetCandidatesPair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/Statistics.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +115,7 @@
       <workItem from="1719960378446" duration="1041000" />
       <workItem from="1719961536635" duration="1295000" />
       <workItem from="1719962930522" duration="3554000" />
-      <workItem from="1720036472931" duration="3361000" />
+      <workItem from="1720036472931" duration="4563000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -427,7 +429,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720038278992</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Refactor EqualProductsFinder, delegate some parts of its functionalities to LoggingManager and Statistics class.">
+      <option name="closed" value="true" />
+      <created>1720039881657</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1720039881657</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,7 +455,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="implementace metod logSortedCandidates, ensureUniqueFilePath, filenameWithoutExtension" />
     <MESSAGE value="limit processed products to increase speed of dev time runs" />
     <MESSAGE value="implemented FileHandler class" />
     <MESSAGE value="implemented abstract generic class Adapter" />
@@ -470,6 +479,7 @@
     <MESSAGE value="Pridani overview.html vcetne nakonfigruovani javadoc v pom.xml, aby overview.html bral v potaz" />
     <MESSAGE value="Javadoc comment for class EqualProductsFinder" />
     <MESSAGE value="Javadoc comment for constructor and its helper methods of class EqualProductsFinder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Javadoc comment for constructor and its helper methods of class EqualProductsFinder" />
+    <MESSAGE value="Refactor EqualProductsFinder, delegate some parts of its functionalities to LoggingManager and Statistics class." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor EqualProductsFinder, delegate some parts of its functionalities to LoggingManager and Statistics class." />
   </component>
 </project>

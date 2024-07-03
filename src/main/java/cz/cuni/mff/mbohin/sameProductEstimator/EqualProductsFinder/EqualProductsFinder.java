@@ -1,8 +1,9 @@
-package cz.cuni.mff.mbohin.sameProductEstimator;
+package cz.cuni.mff.mbohin.sameProductEstimator.EqualProductsFinder;
 
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.NormalizedProduct;
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.Eshop;
 import cz.cuni.mff.mbohin.config.RuntimeConfig;
+import cz.cuni.mff.mbohin.sameProductEstimator.*;
 
 import java.util.function.BiFunction;
 

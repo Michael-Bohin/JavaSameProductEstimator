@@ -5,7 +5,7 @@ import cz.cuni.mff.mbohin.productParser.adapters.rohlik.RohlikAdapter;
 import cz.cuni.mff.mbohin.productParser.adapters.kosik.KosikAdapter;
 import cz.cuni.mff.mbohin.productParser.adapters.tesco.TescoAdapter;
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.NormalizedProduct;
-import cz.cuni.mff.mbohin.sameProductEstimator.EqualProductsFinder;
+import cz.cuni.mff.mbohin.sameProductEstimator.EqualProductsFinder.EqualProductsFinder;
 
 import java.io.IOException;
 import java.util.List;
