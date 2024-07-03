@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The EqualProductsFinder class is responsible for identifying and sorting probable equal products
@@ -50,7 +51,6 @@ public class EqualProductsFinder {
     private final List<NormalizedProduct> kosikProducts;
     private final List<NormalizedProduct> rohlikProducts;
     private final List<NormalizedProduct> tescoProducts;
-    private static final String loggingDirectory = "./out/equalProductsFinder/";
     /**
      * Constructs an EqualProductsFinder instance with lists of normalized products from Kosik, Rohlik, and Tesco e-shops.
      * This constructor ensures that all products in each list belong to their respective e-shops and prepares the output
@@ -127,31 +127,17 @@ public class EqualProductsFinder {
     private static void generateMostProbableEqualProducts(EshopSubstrings eshopA, EshopSubstrings eshopB) {
         EshopSubstrings smallerEshop = eshopA.products.size() < eshopB.products.size() ? eshopA : eshopB;
         EshopSubstrings largerEshop = eshopA.products.size() >= eshopB.products.size() ? eshopA : eshopB;
-
         List<ProductHashSetCandidatesPair> equalCandidatesOfProducts = ProductPairingManager.findEqualCandidatesOfProducts(smallerEshop, largerEshop);
 
-        SimilarityCalculator substringCalculator = new SubstringSimilarityCalculator();
-        SimilarityCalculator prefixCalculator = new PrefixSimilarityCalculator();
-        SimilarityCalculator lcsCalculator = new LongestCommonSubsequenceCalculator();
-        SimilarityCalculator editDistanceCalculator = new LengthAdjustedEditDistanceCalculator();
+        for (Map.Entry<String, SimilarityCalculator> entry : SimilarityCalculatorsFactory.getSimilarityCalculators().entrySet()) {
+            for (int i = 0; i < Math.min(RuntimeConfig.limitProcessedProducts, equalCandidatesOfProducts.size()); i++) {
+                ProductHashSetCandidatesPair productAndCandidates = equalCandidatesOfProducts.get(i);
+                NormalizedProduct product = productAndCandidates.product();
+                HashSet<NormalizedProduct> candidates = productAndCandidates.candidates();
 
-        int min = Math.min(RuntimeConfig.limitProcessedProducts, equalCandidatesOfProducts.size());
-        for (int i = 0; i < min; i++) {
-            ProductHashSetCandidatesPair productAndCandidates = equalCandidatesOfProducts.get(i);
-            NormalizedProduct product = productAndCandidates.product();
-            HashSet<NormalizedProduct> candidates = productAndCandidates.candidates();
-
-            List<SimilarityCandidatePair> sortedCandidatesSubstring = sortCandidates(product, candidates, substringCalculator::calculate);
-            LoggingManager.logSortedCandidates("substringSimilarity", product, largerEshop, sortedCandidatesSubstring);
-
-            List<SimilarityCandidatePair> sortedCandidatesPrefix = sortCandidates(product, candidates, prefixCalculator::calculate);
-            LoggingManager.logSortedCandidates("prefixSimilarity", product, largerEshop, sortedCandidatesPrefix);
-
-            List<SimilarityCandidatePair> sortedCandidatesLCS = sortCandidates(product, candidates, lcsCalculator::calculate);
-            LoggingManager.logSortedCandidates("LongestCommonSubsequenceSimilarity", product, largerEshop, sortedCandidatesLCS);
-
-            List<SimilarityCandidatePair> sortedCandidatesDistance = sortCandidates(product, candidates, editDistanceCalculator::calculate);
-            LoggingManager.logSortedCandidates("LengthAdjustedEditationDistance", product, largerEshop, sortedCandidatesDistance);
+                List<SimilarityCandidatePair> sortedCandidates = sortCandidates(product, candidates, entry.getValue()::calculate);
+                LoggingManager.logSortedCandidates(entry.getKey(), product, largerEshop, sortedCandidates);
+            }
         }
     }
 
