@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Refactor EqualProductsFinder.generateMostProbableEqualProducts method">
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Javadoc missing commments for the helper classes of EqualProductsFinder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/ProductPairingManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/ProductPairingManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/SimilarityCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/SimilarityCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/SimilarityCalculatorsFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/SimilarityCalculatorsFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/CandidateTuple.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EshopSubstrings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EshopSubstrings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LCSFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LCSFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LevenshteinDistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LevenshteinDistance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/ProductHashSetCandidatesPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/ProductHashSetCandidatesPair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/ProductListCandidatesPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/ProductListCandidatesPair.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +117,7 @@
       <workItem from="1719961536635" duration="1295000" />
       <workItem from="1719962930522" duration="3554000" />
       <workItem from="1720036472931" duration="9991000" />
-      <workItem from="1720081948209" duration="704000" />
+      <workItem from="1720081948209" duration="1149000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -476,7 +479,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720048608309</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Javadoc missing commments for the helper classes of EqualProductsFinder">
+      <option name="closed" value="true" />
+      <created>1720082748082</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1720082748082</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -494,7 +505,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Made json tesco product deserialization has been forced to work" />
     <MESSAGE value="Introduced the KosikJsonProduct schema" />
     <MESSAGE value="Implemented KosikAdapter" />
     <MESSAGE value="Forced KosikJsonProduct deserialization to not fail" />
@@ -519,6 +529,7 @@
     <MESSAGE value="Further refactoring of EqualProductsFinder by delegating pairing logic to ProductPairingManager" />
     <MESSAGE value="Further refactoring of EqualProductsFinder by delegating more logic to LoggingManager" />
     <MESSAGE value="Refactor EqualProductsFinder.generateMostProbableEqualProducts method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor EqualProductsFinder.generateMostProbableEqualProducts method" />
+    <MESSAGE value="Javadoc missing commments for the helper classes of EqualProductsFinder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Javadoc missing commments for the helper classes of EqualProductsFinder" />
   </component>
 </project>

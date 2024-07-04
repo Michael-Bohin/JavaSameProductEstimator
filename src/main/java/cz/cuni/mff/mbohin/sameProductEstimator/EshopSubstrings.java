@@ -39,6 +39,13 @@ public class EshopSubstrings {
 
     private static final Logger LOGGER = Logger.getLogger("EshopSubstrings logger");
 
+    /**
+     * Initializes an EshopSubstrings instance with a list of normalized products.
+     * Constructs a dictionary mapping substrings of product names to their respective product lists
+     * and logs statistics about the dictionary's size and distribution.
+     *
+     * @param products the list of normalized products to be processed
+     */
     public EshopSubstrings(List<NormalizedProduct> products) {
         this.products = products;
         for (NormalizedProduct product : products) {

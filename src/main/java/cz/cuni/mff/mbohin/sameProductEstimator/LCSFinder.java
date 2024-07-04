@@ -1,7 +1,6 @@
 package cz.cuni.mff.mbohin.sameProductEstimator;
 
 public class LCSFinder {
-
     /**
      * Calculates the length of the longest common subsequence (LCS) between two strings. The LCS is the longest sequence of characters
      * that appear in the same order in both strings but not necessarily consecutively. This method uses dynamic programming to build
