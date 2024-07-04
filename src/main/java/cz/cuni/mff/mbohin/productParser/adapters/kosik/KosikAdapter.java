@@ -37,6 +37,10 @@ import java.math.BigDecimal;
  * @see KosikJsonProduct
  */
 public class KosikAdapter extends Adapter<KosikJsonProduct> {
+    /**
+     * Constructs a new KosikAdapter.
+     * Initializes the adapter with KosikJsonProduct as the type parameter class.
+     */
     public KosikAdapter() {
         super(KosikJsonProduct.class);
     }
@@ -85,6 +89,12 @@ public class KosikAdapter extends Adapter<KosikJsonProduct> {
         return normalizedProduct;
     }
 
+    /**
+     * Extracts storage conditions from the product's supplier information.
+     *
+     * @param product the KosikJsonProduct to extract storage conditions from
+     * @return the storage conditions if found, otherwise null
+     */
     private static String getStorageConditions(KosikJsonProduct product) {
         Supplierinfo[] list = product.product.detail.supplierInfo;
         if (list == null)
@@ -97,6 +107,12 @@ public class KosikAdapter extends Adapter<KosikJsonProduct> {
         return null;
     }
 
+    /**
+     * Safely retrieves the unit type from the KosikJsonProduct.
+     *
+     * @param jsonProduct the KosikJsonProduct to retrieve the unit type from
+     * @return the corresponding UnitType, or null if none found
+     */
     private static UnitType safeRetrieveUnitType(KosikJsonProduct jsonProduct) {
         String unitDesc = jsonProduct.product.unit;
 
@@ -109,6 +125,12 @@ public class KosikAdapter extends Adapter<KosikJsonProduct> {
         return null;
     }
 
+    /**
+     * Converts Kosik nutritional values to a normalized format.
+     *
+     * @param values the Kosik nutritional values to convert
+     * @return a NutritionalValues object with normalized data, or null if values are null
+     */
     private static NutritionalValues toNormalized(KosikNutritionalValues values) {
         if (values == null || values.values == null)
             return null;
@@ -151,6 +173,12 @@ public class KosikAdapter extends Adapter<KosikJsonProduct> {
         return new NutritionalValues(energetickaKJ, energetickaKCAL, tuky, mastneKyseliny, sacharidy, cukry, bilkoviny, sul, vlaknina);
     }
 
+    /**
+     * Parses a string to an integer, returning 0 if parsing fails.
+     *
+     * @param stringValue the string to parse
+     * @return the parsed integer, or 0 if parsing fails
+     */
     private static int parseStringToInt(String stringValue) {
         try {
             return Integer.parseInt(stringValue.split("\\.")[0]);

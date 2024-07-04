@@ -3,6 +3,11 @@ package cz.cuni.mff.mbohin.sameProductEstimator.EqualProductsFinder;
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.NormalizedProduct;
 import cz.cuni.mff.mbohin.sameProductEstimator.LevenshteinDistance;
 
+/**
+ * A {@link SimilarityCalculator} implementation that calculates the length-adjusted edit distance similarity between two products.
+ * This class normalizes product names by removing whitespaces and converting to lowercase, computes the edit distance,
+ * adjusts it by subtracting the absolute difference in name lengths, and normalizes the result.
+ */
 public class LengthAdjustedEditDistanceCalculator extends SimilarityCalculator {
     /**
      * Calculates the length-adjusted edit distance similarity between two products. The product names are first normalized by removing

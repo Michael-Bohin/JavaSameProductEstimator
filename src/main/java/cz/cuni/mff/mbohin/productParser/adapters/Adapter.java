@@ -29,30 +29,75 @@ import java.util.logging.Logger;
  * @param <T> the type of product model that this adapter will process
  */
 public abstract class Adapter<T> {
-
     private final Class<T> typeParameterClass;
-
-    protected abstract boolean anyCriticalPropertyIsNull(T product);
-
-    protected abstract NormalizedProduct unsafeParseNormalizedProduct(T product);
-
-    protected abstract String getNameOf();
-
-    protected abstract String getRelativeDataPath();
-
-    protected abstract Eshop getEshopType();
-
     private static final Logger LOGGER = Logger.getLogger("Adapter<T> logger");
 
+    /**
+     * Constructs an Adapter instance for the specified type of product model.
+     *
+     * @param typeParameterClass the class type of the product model
+     */
     public Adapter(Class<T> typeParameterClass) {
+
         this.typeParameterClass = typeParameterClass;
     }
 
+    /**
+     * Checks if any critical property of the given product is null.
+     *
+     * @param product the product to check
+     * @return true if any critical property is null, false otherwise
+     */
+    protected abstract boolean anyCriticalPropertyIsNull(T product);
+
+    /**
+     * Parses the given product into a normalized product format.
+     * This method is not safe and should be used with caution.
+     *
+     * @param product the product to parse
+     * @return the normalized product
+     */
+    protected abstract NormalizedProduct unsafeParseNormalizedProduct(T product);
+
+    /**
+     * Retrieves the name of the adapter.
+     *
+     * @return the name of the adapter
+     */
+    protected abstract String getNameOf();
+
+    /**
+     * Retrieves the relative path to the data source.
+     *
+     * @return the relative data path
+     */
+    protected abstract String getRelativeDataPath();
+
+    /**
+     * Retrieves the type of e-shop represented by the adapter.
+     *
+     * @return the e-shop type
+     */
+    protected abstract Eshop getEshopType();
+
+    /**
+     * Retrieves the list of normalized products by loading and parsing JSON data from the data source.
+     *
+     * @return the list of normalized products
+     * @throws IOException if an I/O error occurs during data loading
+     */
     public List<NormalizedProduct> getNormalizedProducts() throws IOException {
         String json = FileHandler.loadJsonFromPath(getRelativeDataPath());
         return parseNormalizedProducts(json);
     }
 
+    /**
+     * Retrieves the list of normalized products by loading and parsing JSON data from a specified zip extract path.
+     *
+     * @param zipExtractPath the path to the zip extract directory
+     * @return the list of normalized products
+     * @throws IOException if an I/O error occurs during data loading
+     */
     @SuppressWarnings("unused")
     public List<NormalizedProduct> getNormalizedProducts(String zipExtractPath) throws IOException {
         String json = FileHandler.loadJsonFromPath(getRelativeDataPath(), zipExtractPath);
@@ -67,6 +112,12 @@ public abstract class Adapter<T> {
         return productsPair.getKey();
     }
 
+    /**
+     * Deserializes JSON data into a list of product models.
+     *
+     * @param json the JSON data to deserialize
+     * @return the list of deserialized product models
+     */
     public List<T> deserializeProducts(String json) {
         ObjectMapper mapper = new ObjectMapper();
         try {

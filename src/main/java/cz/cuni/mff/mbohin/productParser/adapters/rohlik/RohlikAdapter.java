@@ -31,7 +31,10 @@ import java.math.BigDecimal;
  * @see RohlikJsonProduct
  */
 public class RohlikAdapter extends Adapter<RohlikJsonProduct> {
-
+    /**
+     * Constructs a new RohlikAdapter.
+     * Initializes the adapter with RohlikJsonProduct as the type parameter class.
+     */
     public RohlikAdapter() {
         super(RohlikJsonProduct.class);
     }
@@ -79,6 +82,12 @@ public class RohlikAdapter extends Adapter<RohlikJsonProduct> {
         return normalizedProduct;
     }
 
+    /**
+     * Parses the unit type from RohlikJsonProduct to a generalized UnitType.
+     *
+     * @param product the RohlikJsonProduct to parse
+     * @return the corresponding UnitType, or OSTATNI if no match is found
+     */
     private static UnitType parseUnitType(RohlikJsonProduct product) {
         if (product.unit == null)
             return null;

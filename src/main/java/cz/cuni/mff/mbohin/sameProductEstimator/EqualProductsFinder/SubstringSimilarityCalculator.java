@@ -4,6 +4,10 @@ import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.NormalizedProduct;
 
 import java.util.HashSet;
 
+/**
+ * A {@link SimilarityCalculator} implementation that calculates the similarity between two products based on the ratio of shared substrings.
+ * This class normalizes product names by converting them to lowercase, splits them into substrings, and computes the similarity ratio based on the count of equal substrings.
+ */
 public class SubstringSimilarityCalculator extends SimilarityCalculator {
     /**
      * Calculates the similarity between two products based on the ratio of shared substrings.

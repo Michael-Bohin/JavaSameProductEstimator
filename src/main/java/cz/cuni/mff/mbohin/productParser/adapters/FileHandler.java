@@ -12,8 +12,18 @@ import java.util.stream.Stream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+/**
+ * Utility class for handling file operations such as loading JSON data from paths,
+ * extracting files from zip archives, and managing directories.
+ */
 public class FileHandler {
-
+    /**
+     * Loads JSON data from a specified file path.
+     *
+     * @param relativePath the relative path to the JSON file
+     * @return the JSON data as a string
+     * @throws IOException if the file is not found or cannot be read
+     */
     public static String loadJsonFromPath(String relativePath) throws IOException {
         File file = new File(relativePath);
         if (file.exists()) {
@@ -22,6 +32,14 @@ public class FileHandler {
         throw new IOException("File not found: " + relativePath);
     }
 
+    /**
+     * Loads JSON data from a specified path, extracting it from a zip file if necessary.
+     *
+     * @param path the path to the zip file
+     * @param extractPath the path to the directory where the zip file will be extracted
+     * @return the JSON data as a string
+     * @throws IOException if an I/O error occurs during extraction or reading
+     */
     public static String loadJsonFromPath(String path, String extractPath) throws IOException {
         File extractDir = new File(extractPath);
         if (extractDir.exists()) {
@@ -50,6 +68,13 @@ public class FileHandler {
         return json;
     }
 
+    /**
+     * Unzips a specified zip file to a destination directory.
+     *
+     * @param zipFilePath the path to the zip file
+     * @param destDirectory the destination directory where the zip file will be extracted
+     * @throws IOException if an I/O error occurs during extraction
+     */
     private static void unzip(String zipFilePath, String destDirectory) throws IOException {
         File destDir = new File(destDirectory);
         createDirectory(destDir);
@@ -63,12 +88,26 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Creates a directory if it does not exist.
+     *
+     * @param directory the directory to create
+     * @throws IOException if the directory cannot be created
+     */
     private static void createDirectory(File directory) throws IOException {
         if (!directory.exists() && !directory.mkdirs()) {
             throw new IOException("Failed to create the directory: " + directory);
         }
     }
 
+    /**
+     * Processes a zip entry and extracts it to the destination directory.
+     *
+     * @param zipFile the zip file
+     * @param entry the zip entry
+     * @param destDir the destination directory
+     * @throws IOException if an I/O error occurs during extraction
+     */
     private static void processZipEntry(ZipFile zipFile, ZipEntry entry, File destDir) throws IOException {
         File entryDestination = new File(destDir, entry.getName());
         if (entry.isDirectory()) {
@@ -80,6 +119,14 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Writes the contents of a zip entry to a file.
+     *
+     * @param zipFile the zip file
+     * @param entry the zip entry
+     * @param destination the destination file
+     * @throws IOException if an I/O error occurs during writing
+     */
     private static void writeFile(ZipFile zipFile, ZipEntry entry, File destination) throws IOException {
         try (InputStream in = zipFile.getInputStream(entry);
              FileOutputStream out = new FileOutputStream(destination)) {
@@ -91,6 +138,11 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Recursively deletes a directory and its contents.
+     *
+     * @param directoryToBeDeleted the directory to be deleted
+     */
     private static void deleteDirectory(File directoryToBeDeleted) {
         File[] allContents = directoryToBeDeleted.listFiles();
         if (allContents != null) {

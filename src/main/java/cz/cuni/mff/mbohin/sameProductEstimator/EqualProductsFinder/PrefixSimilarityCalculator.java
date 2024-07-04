@@ -2,6 +2,10 @@ package cz.cuni.mff.mbohin.sameProductEstimator.EqualProductsFinder;
 
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.NormalizedProduct;
 
+/**
+ * A {@link SimilarityCalculator} implementation that calculates the similarity between two products based on the length of their common prefix.
+ * This class normalizes product names by converting them to lowercase, computes the common prefix length, and normalizes the result by the minimum length of the two names.
+ */
 public class PrefixSimilarityCalculator extends SimilarityCalculator {
     /**
      * Calculates the similarity between two products based on the length of their common prefix. The product names are first normalized

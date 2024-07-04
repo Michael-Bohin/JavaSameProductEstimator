@@ -44,6 +44,16 @@ public class NormalizedProduct {
 
     public final InferredData inferredData;
 
+    /**
+     * Constructs a NormalizedProduct instance with the specified name, URL, price, and e-shop.
+     * Ensures that name and URL are not null or empty and that price is non-negative.
+     *
+     * @param name the name of the product
+     * @param url the URL to the product page
+     * @param price the price of the product
+     * @param eshop the e-shop from which the product originates
+     * @throws IllegalArgumentException if name or URL are null or empty, or if price is negative
+     */
     public NormalizedProduct(String name, String url, BigDecimal price, Eshop eshop) {
         this.name = assertStringIsNotNullOrEmpty(name);
         this.url = assertStringIsNotNullOrEmpty(url);
@@ -84,18 +94,54 @@ public class NormalizedProduct {
     }
 
     // Setters
+
+    /**
+     * Sets the description of the product.
+     *
+     * @param description the description of the product
+     */
     public void setDescription(String description) { this.description = description; }
+
+    /**
+     * Sets the producer of the product.
+     *
+     * @param producer the producer of the product
+     */
     public void setProducer(String producer) { this.producer = producer; }
+
+    /**
+     * Sets the storage conditions of the product.
+     *
+     * @param conditions the storage conditions of the product
+     */
     public void setStorageConditions(String conditions) { this.storageConditions = conditions; }
+
+    /**
+     * Sets the number of pieces for the product and updates the unit type to PIECES.
+     *
+     * @param pieces the number of pieces
+     */
     public void setPieces(int pieces) {
         this.unitType = UnitType.PIECES;
         this.pieces = pieces;
     }
+
+    /**
+     * Sets the weight of the product and updates the unit type to WEIGHT.
+     *
+     * @param weight the weight of the product
+     */
     @SuppressWarnings("unused")
     public void setWeight(Double weight) {
         this.unitType = UnitType.WEIGHT;
         this.weight = weight;
     }
+
+    /**
+     * Sets the volume of the product and updates the unit type to VOLUME.
+     *
+     * @param volume the volume of the product
+     */
     @SuppressWarnings("unused")
     public void setVolume(Double volume) {
         this.unitType = UnitType.VOLUME;

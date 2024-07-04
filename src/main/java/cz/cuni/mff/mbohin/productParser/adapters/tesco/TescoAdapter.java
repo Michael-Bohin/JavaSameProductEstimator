@@ -78,6 +78,12 @@ public class TescoAdapter extends Adapter<TescoJsonProduct> {
         return normalizedProduct;
     }
 
+    /**
+     * Parses the unit type from TescoJsonProduct to a generalized UnitType.
+     *
+     * @param product the TescoJsonProduct to parse
+     * @return the corresponding UnitType, or OSTATNI if no match is found
+     */
     private UnitType parseUnitType(TescoJsonProduct product) {
         if (product.product.unitOfMeasure == null) {
             return null;

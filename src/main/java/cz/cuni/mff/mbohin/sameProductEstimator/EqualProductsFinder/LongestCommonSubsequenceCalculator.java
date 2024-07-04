@@ -3,6 +3,10 @@ package cz.cuni.mff.mbohin.sameProductEstimator.EqualProductsFinder;
 import cz.cuni.mff.mbohin.productParser.normalizedJsonSchema.NormalizedProduct;
 import cz.cuni.mff.mbohin.sameProductEstimator.LCSFinder;
 
+/**
+ * A {@link SimilarityCalculator} implementation that calculates the similarity between two products based on the longest common subsequence (LCS) of their names.
+ * This class normalizes product names by removing whitespaces and converting to lowercase, computes the LCS, and normalizes the result by the minimum length of the two names.
+ */
 public class LongestCommonSubsequenceCalculator extends SimilarityCalculator {
     /**
      * Calculates the similarity between two products based on the longest common subsequence (LCS) of their names.

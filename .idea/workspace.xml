@@ -4,14 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Javadoc missing commments for the helper classes of EqualProductsFinder">
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Added missing javadoc comments for the rest of the classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/CandidateTuple.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EshopSubstrings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EshopSubstrings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/config/RuntimeConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/config/RuntimeConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/ProductParserLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/ProductParserLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Adapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Adapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/FileHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/FileHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/JsonReferenceNullException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/Pair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/kosik/KosikAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/RohlikAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/rohlik/RohlikAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/TescoAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/adapters/tesco/TescoAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/CountryOfOrigin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/Eshop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/Eshop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/InferredData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/InferredData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NormalizedProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NormalizedProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NutritionalValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/NutritionalValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/UnitType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/productParser/normalizedJsonSchema/UnitType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/LengthAdjustedEditDistanceCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/LengthAdjustedEditDistanceCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/LongestCommonSubsequenceCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/LongestCommonSubsequenceCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/PrefixSimilarityCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/PrefixSimilarityCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/SubstringSimilarityCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/SubstringSimilarityCalculator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LCSFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LCSFinder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LevenshteinDistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/LevenshteinDistance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/ProductHashSetCandidatesPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/ProductHashSetCandidatesPair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/ProductListCandidatesPair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/ProductListCandidatesPair.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +133,7 @@
       <workItem from="1719961536635" duration="1295000" />
       <workItem from="1719962930522" duration="3554000" />
       <workItem from="1720036472931" duration="9991000" />
-      <workItem from="1720081948209" duration="1149000" />
+      <workItem from="1720081948209" duration="3131000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -487,7 +503,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720082748082</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Added missing javadoc comments for the classses in sameProductEstimator package">
+      <option name="closed" value="true" />
+      <created>1720083258020</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1720083258020</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -505,8 +529,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Introduced the KosikJsonProduct schema" />
-    <MESSAGE value="Implemented KosikAdapter" />
     <MESSAGE value="Forced KosikJsonProduct deserialization to not fail" />
     <MESSAGE value="Implemented the RohlikJsonProduct schema" />
     <MESSAGE value="Implemented RohlikAdapter class" />
@@ -530,6 +552,8 @@
     <MESSAGE value="Further refactoring of EqualProductsFinder by delegating more logic to LoggingManager" />
     <MESSAGE value="Refactor EqualProductsFinder.generateMostProbableEqualProducts method" />
     <MESSAGE value="Javadoc missing commments for the helper classes of EqualProductsFinder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Javadoc missing commments for the helper classes of EqualProductsFinder" />
+    <MESSAGE value="Added missing javadoc comments for the classses in sameProductEstimator package" />
+    <MESSAGE value="Added missing javadoc comments for the rest of the classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added missing javadoc comments for the rest of the classes" />
   </component>
 </project>

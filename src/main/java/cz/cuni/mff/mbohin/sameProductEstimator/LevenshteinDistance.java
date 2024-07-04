@@ -1,5 +1,12 @@
 package cz.cuni.mff.mbohin.sameProductEstimator;
 
+/**
+ * Provides a method to compute the length-adjusted edit distance between two strings.
+ * The edit distance is the minimum number of operations (insertions, deletions, or substitutions)
+ * required to transform one string into the other. This method adjusts the raw edit distance
+ * by subtracting the absolute difference in lengths of the two strings, ensuring fairness
+ * for strings of different lengths.
+ */
 public class LevenshteinDistance {
     /**
      * Computes the length-adjusted edit distance between two strings. The edit distance is the minimum number of operations
