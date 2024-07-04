@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Further refactoring of EqualProductsFinder by delegating more logic to LoggingManager">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/SimilarityCalculatorsFactory.java" afterDir="false" />
+    <list default="true" id="fad2cc68-0b06-433d-97db-3d566c859fd8" name="Changes" comment="Refactor EqualProductsFinder.generateMostProbableEqualProducts method">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/EqualProductsFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/EqualProductsFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/ProductPairingManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/ProductPairingManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/SimilarityCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/SimilarityCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/SimilarityCalculatorsFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cz/cuni/mff/mbohin/sameProductEstimator/EqualProductsFinder/SimilarityCalculatorsFactory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +113,8 @@
       <workItem from="1719960378446" duration="1041000" />
       <workItem from="1719961536635" duration="1295000" />
       <workItem from="1719962930522" duration="3554000" />
-      <workItem from="1720036472931" duration="9102000" />
+      <workItem from="1720036472931" duration="9991000" />
+      <workItem from="1720081948209" duration="704000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit of project">
       <option name="closed" value="true" />
@@ -466,7 +468,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720047854358</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Refactor EqualProductsFinder.generateMostProbableEqualProducts method">
+      <option name="closed" value="true" />
+      <created>1720048608309</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1720048608309</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,7 +494,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implemented TescoAdapter" />
     <MESSAGE value="Made json tesco product deserialization has been forced to work" />
     <MESSAGE value="Introduced the KosikJsonProduct schema" />
     <MESSAGE value="Implemented KosikAdapter" />
@@ -509,6 +518,7 @@
     <MESSAGE value="Further refactoring of EqualProductsFinder by delegating the similarity calculations to abstract class SimilarityCalculator with it concrete inheritors." />
     <MESSAGE value="Further refactoring of EqualProductsFinder by delegating pairing logic to ProductPairingManager" />
     <MESSAGE value="Further refactoring of EqualProductsFinder by delegating more logic to LoggingManager" />
-    <option name="LAST_COMMIT_MESSAGE" value="Further refactoring of EqualProductsFinder by delegating more logic to LoggingManager" />
+    <MESSAGE value="Refactor EqualProductsFinder.generateMostProbableEqualProducts method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor EqualProductsFinder.generateMostProbableEqualProducts method" />
   </component>
 </project>

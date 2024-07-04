@@ -8,6 +8,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.TreeMap;
 
+/**
+ * Manages the pairing and comparison of products between different e-shops.
+ * Provides methods to form e-shop pairs based on product list sizes and
+ * generate lists of potential matching products based on substring analysis.
+ */
 public class ProductPairingManager {
     /**
      * Forms a list of e-shop pairs based on the size of their product lists.
